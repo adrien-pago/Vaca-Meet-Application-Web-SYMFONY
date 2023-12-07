@@ -37,3 +37,23 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+
+security:
+    providers:
+        users_in_db:
+            entity:
+                class: App\Entity\User
+                property: nomCamping
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: true
+            form_login:
+                login_path: app_login
+                check_path: app_login
+
+    # ...

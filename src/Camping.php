@@ -1,7 +1,6 @@
 <?PHP
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
  */
@@ -58,11 +57,7 @@ class Camping implements UserInterface
     {
         return $this->email;
     }
-
-    // ... (implémentez les autres méthodes requises par UserInterface si nécessaire)
+   // ... (implémentez les autres méthodes requises par UserInterface si nécessaire)
 }
-
-
-
 
 ?>
