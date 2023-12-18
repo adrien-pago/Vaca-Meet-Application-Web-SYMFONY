@@ -14,5 +14,4 @@ class LoginType extends AbstractType
             ->add('password');
     }
 
-    // ... configureOptions si nécessaire
 }
