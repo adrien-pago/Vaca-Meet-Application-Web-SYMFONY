@@ -23,6 +23,14 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+            # Configuration de la protection CSRF dans form_login
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email # Configuration pour utiliser le champ email comme identifiant de connexion
+                default_target_path: app_home
+                enable_csrf: true
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
@@ -41,10 +49,4 @@ when@test:
             main:
                 pattern: ^/
                 form_login:
-                    login_path: app_login
-                    check_path: app_login
-                    default_target_path: app_home
-                logout:
-                    path: app_logout
-                    target: app_login
-                anonymous: true
+                   
