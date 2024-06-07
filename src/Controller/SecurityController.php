@@ -12,34 +12,44 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Doctrine\Bundle\DoctrineBundle\Registry;
-
-
 
 class SecurityController extends AbstractController
 {
+    
 
-    /**
+/**
  * @Route("/login", name="app_login")
- */
+*/
 public function login(Request $request, AuthenticationUtils $authenticationUtils, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
 {
+
+   
     $error = $authenticationUtils->getLastAuthenticationError();
     $lastUsername = $authenticationUtils->getLastUsername();
+    
 
-    $loginForm = $this->createForm(LoginFormType::class, ['email' => $lastUsername]);
+    $loginForm = $this->createForm(LoginFormType::class);
     $loginForm->handleRequest($request);
 
-    if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-        $formData = $loginForm->getData();
-        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $formData['email']]);
 
-        if (!$user || !$passwordHasher->isPasswordValid($user, $formData['password'])) {
+    if ($loginForm->isSubmitted() && $loginForm->isValid()) {
+       
+        $userData = $loginForm->getData();
+        $user = new User();
+        $user->getEmail($userData['email']);
+        $user->getEmail($userData['email']);
+
+        // Validation de l'email
+        if (empty($userData['email']) || !is_string($userData['email'])) {
+            throw new \InvalidArgumentException('Le champ email doit être une chaîne de caractères valide.');
+        }
+
+        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userData['email']['email']]);
+
+        if (!$user || !$passwordHasher->isPasswordValid($user, $userData['password'])) {
             $this->addFlash('error', 'Identifiants invalides.');
             return $this->redirectToRoute('app_login');
         }
-
-        // Ici, tu peux ajouter la logique d'authentification supplémentaire si nécessaire
 
         return $this->redirectToRoute('home');
     }

@@ -13,11 +13,16 @@
                     <div class="card-body">
                         <h1 class="card-title">Connexion</h1>
                         <form method="post" class="mt-3">
+                            {# Afficher les erreurs globales du formulaire #}
+                            {{ form_errors(loginForm) }}
+                            
                             {{ form_row(loginForm.email, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Email'}}) }}
+                            {{ form_errors(loginForm.email) }} {# Afficher les erreurs pour le champ email #}
                             {{ form_row(loginForm.password, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Mot de passe'}}) }}
-
-                            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
-                        </form>
+                            {{ form_errors(loginForm.password) }} {# Afficher les erreurs pour le champ mot de passe #}
+            
+                        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                    {{ form_end(loginForm) }}
                     </div>
                 </div>
                 <div class="text-center mt-3">

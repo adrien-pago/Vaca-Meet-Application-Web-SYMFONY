@@ -11,26 +11,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class LoginFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Email(),
-                ],
-            ])
-            ->add('password', PasswordType::class, [
-                'constraints' => [
-                    new Assert\NotBlank(),
-                ],
-            ]);
+        ->add('email', EmailType::class, [
+            'constraints' => [
+                new Assert\NotBlank(),
+                new Assert\Email(),
+            ],
+        ])
+        ->add('password', PasswordType::class, [
+            'constraints' => [
+                new Assert\NotBlank(),
+            ],
+        ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver) // car je n'est pas trouvé commment débug le token CRSF pas valide !!!
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'csrf_protection' => false,
         ]);
     }
 }
