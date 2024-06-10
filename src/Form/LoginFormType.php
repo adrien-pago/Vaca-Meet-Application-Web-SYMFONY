@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
-
+var_dump('test3'); // debug
 class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -17,7 +17,7 @@ class LoginType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre email',
+                        'message' => 'Veuillez entrer votre email1',
                     ]),
                     new Email([
                         'message' => 'Veuillez entrer un email valide',
@@ -33,4 +33,3 @@ class LoginType extends AbstractType
             ]);
     }
 }
-
