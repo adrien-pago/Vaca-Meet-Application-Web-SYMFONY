@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\LoginType;
 use App\Form\LoginFormType;
 use App\Form\RegistrationFormType;
 use App\Entity\User;
@@ -21,45 +22,28 @@ class SecurityController extends AbstractController
 /**
  * @Route("/login", name="app_login")
 */
-public function login(Request $request, AuthenticationUtils $authenticationUtils, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+// SecurityController.php
+
+public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
+    $form = $this->createForm(LoginType::class);
+    $form->handleRequest($request);
 
-   
-   
-    $error = $authenticationUtils->getLastAuthenticationError();
-    $lastUsername = $authenticationUtils->getLastUsername();
-    
+    if ($form->isSubmitted() && $form->isValid()) {
+        $email = $form->get('email')->getData();
 
-    $loginForm = $this->createForm(LoginFormType::class);
-    $loginForm->handleRequest($request);
-
-
-    if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-       
-        $userData = $loginForm->getData();
-        $user = new User();
-        $user->getEmail($userData['email']);
-        $user->getEmail($userData['email']);
-
-        // Validation de l'email
-        if (empty($userData['email']) || !is_string($userData['email'])) {
-            throw new \InvalidArgumentException('Le champ email doit être une chaîne de caractères valide.');
+        if (empty($email)) {
+            throw new \InvalidArgumentException("L'email ne peut pas être vide.");
         }
 
-        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userData['email']['email']]);
-
-        if (!$user || !$passwordHasher->isPasswordValid($user, $userData['password'])) {
-            $this->addFlash('error', 'Identifiants invalides.');
-            return $this->redirectToRoute('app_login');
-        }
-
+        // Continuer avec le traitement de la connexion
         return $this->redirectToRoute('home');
     }
 
+    // Affichage du formulaire avec des messages d'erreur le cas échéant
     return $this->render('security/login.html.twig', [
-        'loginForm' => $loginForm->createView(),
-        'last_username' => $lastUsername,
-        'error' => $error,
+        'form' => $form->createView(),
+        'error' => $authenticationUtils->getLastAuthenticationError(),
     ]);
 }
 
