@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
 
 public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
+    var_dump('fon,ction login'); // debug
     $form = $this->createForm(LoginType::class);
     $form->handleRequest($request);
    
