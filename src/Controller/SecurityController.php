@@ -20,8 +20,6 @@ class SecurityController extends AbstractController
 /**
  * @Route("/login", name="app_login")
 */
-// SecurityController.php
-
 public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
     $form = $this->createForm(LoginType::class);
