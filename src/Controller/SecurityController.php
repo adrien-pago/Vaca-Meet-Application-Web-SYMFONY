@@ -32,6 +32,7 @@ public function login(Request $request, AuthenticationUtils $authenticationUtils
 
     if ($form->isSubmitted() && $form->isValid()) {
         $email = $form->get('email')->getData();
+        var_dump($email);
        
         if (empty($email)) {
             throw new \InvalidArgumentException("L'email ne peut pas être vide.");
