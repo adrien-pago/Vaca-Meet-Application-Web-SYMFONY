@@ -2,89 +2,64 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\LoginFormType;
+use App\Form\RegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\LoginType;
-use App\Form\RegistrationFormType;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 class SecurityController extends AbstractController
 {
-    
+    /**
+     * @Route("/login", name="app_login")
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
 
+        $form = $this->createForm(LoginFormType::class, [
+            'email' => $lastUsername,
+        ]);
 
-/**
- * @Route("/login", name="app_login")
-*/
-public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
-{
-    $form = $this->createForm(LoginType::class);
-    $form->handleRequest($request);
-   
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $email = $form->get('email')->getData();
-       
-        if (empty($email)) {
-            throw new \InvalidArgumentException("L'email ne peut pas être vide.");
-        }
-
-        if ($this->getUser()) {
-            var_dump($this);
-            return $this->redirectToRoute('home'); // Redirection en cas de succès
-        }
-   
+        return $this->render('security/login.html.twig', [
+            'loginForm' => $form->createView(),
+            'error' => $error,
+        ]);
     }
-
-    // Affichage du formulaire avec des messages d'erreur le cas échéant
-    return $this->render('security/login.html.twig', [
-        'loginForm' => $form->createView(),
-        'error' => $authenticationUtils->getLastAuthenticationError(),
-    ]);
-}
 
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
     {
-        $registrationForm = $this->createForm(RegistrationFormType::class);
-        $registrationForm->handleRequest($request);
-    
-        if ($registrationForm->isSubmitted()) {
-    
-            if ($registrationForm->isValid()) {
-                $userData = $registrationForm->getData();
-                $user = new User();
-                $user->setEmail($userData['email']);
-                $hashedPassword = $passwordHasher->hashPassword(
-                    $user,
-                    $userData['password']
-                );
-                $user->setPassword($hashedPassword);
-                $user->setNom($userData['nom']);
-                $user->setPrenom($userData['prenom']);
-    
-                try {
-                    $entityManager->persist($user);
-                    $entityManager->flush();
-                    
-                    // Ajoutez des messages de débogage pour vérifier si l'utilisateur est bien enregistré en base de données
-                    $this->addFlash('success', 'User registered successfully');
-                } catch (\Exception $e) {
-                    // Gérez les erreurs ici
-                    $this->addFlash('error', 'Error registering user: ' . $e->getMessage());
-                }
-    
-                return $this->redirectToRoute('app_login');
-            }
-        } 
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($passwordEncoder->hashPassword($user, $form->get('password')->getData()));
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('security/register.html.twig', [
-            'registrationForm' => $registrationForm->createView(),
+            'registrationForm' => $form->createView(),
         ]);
-    }  
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+    }
 }

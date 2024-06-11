@@ -27,10 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $nom = null;
+    private ?string $nomcamping = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $prenom = null;
+ 
 
     public function getId(): ?int
     {
@@ -82,27 +81,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getNomCamping(): ?string
     {
-        return $this->nom;
+        return $this->nomcamping;
     }
 
-    public function setNom(string $nom): static
+    public function setNomCamping(string $nomcamping): static
     {
-        $this->nom = $nom;
+        $this->nomcamping = $nomcamping;
         return $this;
     }
 
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-        return $this;
-    }
 
     public function eraseCredentials(): void
     {
