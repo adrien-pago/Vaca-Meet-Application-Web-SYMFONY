@@ -37,8 +37,11 @@ public function login(Request $request, AuthenticationUtils $authenticationUtils
             throw new \InvalidArgumentException("L'email ne peut pas être vide.");
         }
 
-        // Continuer avec le traitement de la connexion
-        return $this->redirectToRoute('home');
+        if ($this->getUser()) {
+            var_dump($this);
+            return $this->redirectToRoute('home'); // Redirection en cas de succès
+        }
+   
     }
 
     // Affichage du formulaire avec des messages d'erreur le cas échéant
