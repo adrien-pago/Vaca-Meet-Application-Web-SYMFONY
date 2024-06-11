@@ -38,13 +38,13 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $camping = new Camping();
+        $form = $this->createForm(RegistrationFormType::class, $camping);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($passwordEncoder->hashPassword($user, $form->get('password')->getData()));
-            $entityManager->persist($user);
+            $camping->setPassword($passwordEncoder->hashPassword($camping, $form->get('password')->getData()));
+            $entityManager->persist($camping);
             $entityManager->flush();
 
             return $this->redirectToRoute('home');
