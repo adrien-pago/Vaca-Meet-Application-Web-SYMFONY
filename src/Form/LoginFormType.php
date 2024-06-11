@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
-var_dump('test3'); // debug
 class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

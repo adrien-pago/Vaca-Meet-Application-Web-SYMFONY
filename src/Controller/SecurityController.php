@@ -13,7 +13,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-var_dump('test2'); // debug
 class SecurityController extends AbstractController
 {
     
@@ -27,7 +26,6 @@ class SecurityController extends AbstractController
 
 public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
-    var_dump('fon,ction login'); // debug
     $form = $this->createForm(LoginType::class);
     $form->handleRequest($request);
    
