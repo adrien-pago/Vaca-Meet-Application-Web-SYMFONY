@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\LoginType;
-use App\Form\LoginFormType;
 use App\Form\RegistrationFormType;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +22,6 @@ class SecurityController extends AbstractController
 */
 // SecurityController.php
 
-
 public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
     $form = $this->createForm(LoginType::class);
@@ -32,7 +30,6 @@ public function login(Request $request, AuthenticationUtils $authenticationUtils
 
     if ($form->isSubmitted() && $form->isValid()) {
         $email = $form->get('email')->getData();
-        var_dump($email);
        
         if (empty($email)) {
             throw new \InvalidArgumentException("L'email ne peut pas être vide.");
