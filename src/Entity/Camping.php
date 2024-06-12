@@ -1,18 +1,18 @@
 <?php
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
  */
-class Camping implements UserInterface
+class Camping implements PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -88,6 +88,7 @@ class Camping implements UserInterface
         return $this;
     }
 
+    
     public function getPassword(): ?string
     {
         return $this->password;
@@ -125,33 +126,10 @@ class Camping implements UserInterface
         return $this;
     }
 
-    // Implémentation des méthodes de l'interface UserInterface
-
-    public function getRoles(): array
-    {
-        return ['ROLE_CAMPING'];
-    }
-
-    public function getSalt()
-    {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    public function getUsername()
-    {
-        return $this->email;
-    }
+    // Implémentation des méthodes de l'interface PasswordAuthenticatedUserInterface
 
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
+        // Si vous stockez des données sensibles temporairement, effacez-les ici
     }
-
-    public function getUserIdentifier(): string
-    {
-        // Assuming you have a getUsername method that returns the username
-        return $this->getUsername();
-    }
-
-    
 }

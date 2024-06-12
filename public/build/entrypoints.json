@@ -23,6 +23,14 @@
         "/build/css/login.css"
       ]
     },
+    "css/register": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/register.css"
+      ]
+    },
     "bootstrap": {
       "js": [
         "/build/runtime.js"

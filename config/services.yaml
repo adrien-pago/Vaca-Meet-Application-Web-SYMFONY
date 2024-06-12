@@ -21,6 +21,7 @@ services:
             - '../src/Kernel.php'
 
     # Configuration du service UserPasswordEncoderInterface
-    Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface:
-        class: Symfony\Component\Security\Core\Encoder\UserPasswordEncoder
-        arguments: ['@security.encoder_factory.generic']
+    Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface: '@security.password_hasher'
+
+
+    

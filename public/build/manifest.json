@@ -3,6 +3,7 @@
   "build/app.js": "/build/app.js",
   "build/bootstrap_js.js": "/build/bootstrap_js.js",
   "build/css/login.css": "/build/css/login.css",
+  "build/css/register.css": "/build/css/register.css",
   "build/bootstrap.css": "/build/bootstrap.css",
   "build/runtime.js": "/build/runtime.js"
 }

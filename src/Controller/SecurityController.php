@@ -10,8 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface; // New version à partir de la 5.3 symfony
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -37,24 +37,25 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         $camping = new Camping();
         $form = $this->createForm(RegistrationFormType::class, $camping);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encode le mot de passe avant de le sauvegarder
-            $camping->setPassword($passwordEncoder->encodePassword($camping, $form->get('password')->getData())); // Utilisez la méthode encodePassword
+            // Hash the password securely
+            $hashedPassword = $passwordHasher->hashPassword($camping, $form->get('password')->getData());
+            $camping->setPassword($hashedPassword);
 
-            // Vous pouvez aussi initialiser d'autres valeurs par défaut ici, par exemple isActive, rgpdAccepted, etc.
+            // You can also set other default values here, such as isActive, rgpdAccepted, etc.
             $camping->setIsActive(true);
             $camping->setRgpdAccepted(true);
 
             $entityManager->persist($camping);
             $entityManager->flush();
 
-            // Redirige l'utilisateur vers la page de login après l'inscription
+            // Redirect the user to the login page after registration
             return $this->redirectToRoute('app_login');
         }
 
@@ -62,7 +63,6 @@ class SecurityController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/logout", name="app_logout")
      */
