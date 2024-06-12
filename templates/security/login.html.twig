@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    {{ parent() }}
+    {{  encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('app_css') }} 
+{% endblock %}
+
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Vaca-Meet</h1>
+    <h1 class="text-center">Vaca-Meet</h1> 
 
-    <div class="container d-flex align-items-center justify-content-center" style="height: 50vh;">
+    <div class="container d-flex align-items-center justify-content-center">
         <div class="row">
             <div class="col-lg-10">
                 <div class="card">
-                    <div class="card-body" style="height: 50vh;" >
+                    <div class="card-body" >
                         {{ form_start(loginForm, {'attr': {'class': 'form-group'}}) }}
                             <div class="form-group" >
                                 {{ form_label(loginForm.email) }}

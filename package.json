@@ -1,5 +1,20 @@
 {
-  "dependencies": {
-    "bootstrap": "^5.3.3"
+  "name": "my_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/encore dev",
+    "build": "./node_modules/.bin/encore production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@popperjs/core": "^2.11.8",
+    "@symfony/webpack-encore": "^4.6.1",
+    "bootstrap": "^5.3.3",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-notifier": "^1.15.0"
   }
 }

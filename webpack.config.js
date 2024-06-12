@@ -5,6 +5,7 @@ const Encore = require('@symfony/webpack-encore');
 Encore
     // Configure les entrées (les fichiers JS et CSS à inclure dans votre application)
     .addEntry('app', './assets/app.js')
+    .addStyleEntry('css/app', './assets/css/app.css')
 
     // Configure les sorties (les fichiers compilés JS et CSS)
     .setOutputPath('public/build/')

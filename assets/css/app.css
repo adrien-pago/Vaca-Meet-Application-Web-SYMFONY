@@ -1,0 +1,36 @@
+body {
+    background-color: #ffe6e6; /* Un bleu très léger #e6f7ff */
+    font-family: Arial, sans-serif; /* Une police moderne */
+}
+
+.container {
+    max-width: 600px; /* Limite la largeur du formulaire pour une meilleure lisibilité */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ajoute une ombre pour un effet "flottant" */
+    transition: 0.3s; /* Animation lors du survol de la souris */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Augmente l'ombre lors du survol de la souris */
+}
+
+.card-body {
+    padding: 2em; /* Ajoute de l'espace autour du contenu du formulaire */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Un bleu plus vif pour le bouton */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Assombrit le bouton lors du survol de la souris */
+}
+
+.alert-danger {
+    color: #721c24; /* Couleurs recommandées par Bootstrap pour les alertes */
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

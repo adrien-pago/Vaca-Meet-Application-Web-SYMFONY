@@ -1,0 +1,41 @@
+/*!***********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/css/app.css ***!
+  \***********************************************************************************************************/
+body {
+    background-color: #ffe6e6; /* Un bleu très léger #e6f7ff */
+    font-family: Arial, sans-serif; /* Une police moderne */
+}
+
+.container {
+    max-width: 600px; /* Limite la largeur du formulaire pour une meilleure lisibilité */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ajoute une ombre pour un effet "flottant" */
+    transition: 0.3s; /* Animation lors du survol de la souris */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Augmente l'ombre lors du survol de la souris */
+}
+
+.card-body {
+    padding: 2em; /* Ajoute de l'espace autour du contenu du formulaire */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Un bleu plus vif pour le bouton */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Assombrit le bouton lors du survol de la souris */
+}
+
+.alert-danger {
+    color: #721c24; /* Couleurs recommandées par Bootstrap pour les alertes */
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtJQUNJLHlCQUF5QixFQUFFLCtCQUErQjtJQUMxRCw4QkFBOEIsRUFBRSx1QkFBdUI7QUFDM0Q7O0FBRUE7SUFDSSxnQkFBZ0IsRUFBRSxrRUFBa0U7QUFDeEY7O0FBRUE7SUFDSSx1Q0FBdUMsRUFBRSw4Q0FBOEM7SUFDdkYsZ0JBQWdCLEVBQUUsMENBQTBDO0FBQ2hFOztBQUVBO0lBQ0ksd0NBQXdDLEVBQUUsaURBQWlEO0FBQy9GOztBQUVBO0lBQ0ksWUFBWSxFQUFFLHVEQUF1RDtBQUN6RTs7QUFFQTtJQUNJLHlCQUF5QixFQUFFLG9DQUFvQztJQUMvRCxZQUFZO0FBQ2hCOztBQUVBO0lBQ0kseUJBQXlCLEVBQUUsb0RBQW9EO0FBQ25GOztBQUVBO0lBQ0ksY0FBYyxFQUFFLHlEQUF5RDtJQUN6RSx5QkFBeUI7SUFDekIscUJBQXFCO0FBQ3pCLEMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9teV9wcm9qZWN0Ly4vYXNzZXRzL2Nzcy9hcHAuY3NzIl0sInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZTZlNjsgLyogVW4gYmxldSB0csOocyBsw6lnZXIgI2U2ZjdmZiAqL1xyXG4gICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyAvKiBVbmUgcG9saWNlIG1vZGVybmUgKi9cclxufVxyXG5cclxuLmNvbnRhaW5lciB7XHJcbiAgICBtYXgtd2lkdGg6IDYwMHB4OyAvKiBMaW1pdGUgbGEgbGFyZ2V1ciBkdSBmb3JtdWxhaXJlIHBvdXIgdW5lIG1laWxsZXVyZSBsaXNpYmlsaXTDqSAqL1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggMCByZ2JhKDAsMCwwLDAuMik7IC8qIEFqb3V0ZSB1bmUgb21icmUgcG91ciB1biBlZmZldCBcImZsb3R0YW50XCIgKi9cclxuICAgIHRyYW5zaXRpb246IDAuM3M7IC8qIEFuaW1hdGlvbiBsb3JzIGR1IHN1cnZvbCBkZSBsYSBzb3VyaXMgKi9cclxufVxyXG5cclxuLmNhcmQ6aG92ZXIge1xyXG4gICAgYm94LXNoYWRvdzogMCA4cHggMTZweCAwIHJnYmEoMCwwLDAsMC4yKTsgLyogQXVnbWVudGUgbCdvbWJyZSBsb3JzIGR1IHN1cnZvbCBkZSBsYSBzb3VyaXMgKi9cclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgICBwYWRkaW5nOiAyZW07IC8qIEFqb3V0ZSBkZSBsJ2VzcGFjZSBhdXRvdXIgZHUgY29udGVudSBkdSBmb3JtdWxhaXJlICovXHJcbn1cclxuXHJcbi5idG4tcHJpbWFyeSB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmOyAvKiBVbiBibGV1IHBsdXMgdmlmIHBvdXIgbGUgYm91dG9uICovXHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbn1cclxuXHJcbi5idG4tcHJpbWFyeTpob3ZlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA1NmIzOyAvKiBBc3NvbWJyaXQgbGUgYm91dG9uIGxvcnMgZHUgc3Vydm9sIGRlIGxhIHNvdXJpcyAqL1xyXG59XHJcblxyXG4uYWxlcnQtZGFuZ2VyIHtcclxuICAgIGNvbG9yOiAjNzIxYzI0OyAvKiBDb3VsZXVycyByZWNvbW1hbmTDqWVzIHBhciBCb290c3RyYXAgcG91ciBsZXMgYWxlcnRlcyAqL1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZDdkYTtcclxuICAgIGJvcmRlci1jb2xvcjogI2Y1YzZjYjtcclxufSJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==*/

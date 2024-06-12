@@ -1,0 +1,41 @@
+/*!***********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/css/app.css ***!
+  \***********************************************************************************************************/
+body {
+    background-color: #ffe6e6; /* Un bleu très léger #e6f7ff */
+    font-family: Arial, sans-serif; /* Une police moderne */
+}
+
+.container {
+    max-width: 600px; /* Limite la largeur du formulaire pour une meilleure lisibilité */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Ajoute une ombre pour un effet "flottant" */
+    transition: 0.3s; /* Animation lors du survol de la souris */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Augmente l'ombre lors du survol de la souris */
+}
+
+.card-body {
+    padding: 2em; /* Ajoute de l'espace autour du contenu du formulaire */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Un bleu plus vif pour le bouton */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Assombrit le bouton lors du survol de la souris */
+}
+
+.alert-danger {
+    color: #721c24; /* Couleurs recommandées par Bootstrap pour les alertes */
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzL2FwcC5jc3MiLCJtYXBwaW5ncyI6Ijs7O0FBQUE7SUFDSSx5QkFBeUIsRUFBRSwrQkFBK0I7SUFDMUQsOEJBQThCLEVBQUUsdUJBQXVCO0FBQzNEOztBQUVBO0lBQ0ksZ0JBQWdCLEVBQUUsa0VBQWtFO0FBQ3hGOztBQUVBO0lBQ0ksdUNBQXVDLEVBQUUsOENBQThDO0lBQ3ZGLGdCQUFnQixFQUFFLDBDQUEwQztBQUNoRTs7QUFFQTtJQUNJLHdDQUF3QyxFQUFFLGlEQUFpRDtBQUMvRjs7QUFFQTtJQUNJLFlBQVksRUFBRSx1REFBdUQ7QUFDekU7O0FBRUE7SUFDSSx5QkFBeUIsRUFBRSxvQ0FBb0M7SUFDL0QsWUFBWTtBQUNoQjs7QUFFQTtJQUNJLHlCQUF5QixFQUFFLG9EQUFvRDtBQUNuRjs7QUFFQTtJQUNJLGNBQWMsRUFBRSx5REFBeUQ7SUFDekUseUJBQXlCO0lBQ3pCLHFCQUFxQjtBQUN6QixDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbXlfcHJvamVjdC8uL2Fzc2V0cy9jc3MvYXBwLmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmU2ZTY7IC8qIFVuIGJsZXUgdHLDqHMgbMOpZ2VyICNlNmY3ZmYgKi9cclxuICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgLyogVW5lIHBvbGljZSBtb2Rlcm5lICovXHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gICAgbWF4LXdpZHRoOiA2MDBweDsgLyogTGltaXRlIGxhIGxhcmdldXIgZHUgZm9ybXVsYWlyZSBwb3VyIHVuZSBtZWlsbGV1cmUgbGlzaWJpbGl0w6kgKi9cclxufVxyXG5cclxuLmNhcmQge1xyXG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLDAsMCwwLjIpOyAvKiBBam91dGUgdW5lIG9tYnJlIHBvdXIgdW4gZWZmZXQgXCJmbG90dGFudFwiICovXHJcbiAgICB0cmFuc2l0aW9uOiAwLjNzOyAvKiBBbmltYXRpb24gbG9ycyBkdSBzdXJ2b2wgZGUgbGEgc291cmlzICovXHJcbn1cclxuXHJcbi5jYXJkOmhvdmVyIHtcclxuICAgIGJveC1zaGFkb3c6IDAgOHB4IDE2cHggMCByZ2JhKDAsMCwwLDAuMik7IC8qIEF1Z21lbnRlIGwnb21icmUgbG9ycyBkdSBzdXJ2b2wgZGUgbGEgc291cmlzICovXHJcbn1cclxuXHJcbi5jYXJkLWJvZHkge1xyXG4gICAgcGFkZGluZzogMmVtOyAvKiBBam91dGUgZGUgbCdlc3BhY2UgYXV0b3VyIGR1IGNvbnRlbnUgZHUgZm9ybXVsYWlyZSAqL1xyXG59XHJcblxyXG4uYnRuLXByaW1hcnkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjsgLyogVW4gYmxldSBwbHVzIHZpZiBwb3VyIGxlIGJvdXRvbiAqL1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG59XHJcblxyXG4uYnRuLXByaW1hcnk6aG92ZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwNTZiMzsgLyogQXNzb21icml0IGxlIGJvdXRvbiBsb3JzIGR1IHN1cnZvbCBkZSBsYSBzb3VyaXMgKi9cclxufVxyXG5cclxuLmFsZXJ0LWRhbmdlciB7XHJcbiAgICBjb2xvcjogIzcyMWMyNDsgLyogQ291bGV1cnMgcmVjb21tYW5kw6llcyBwYXIgQm9vdHN0cmFwIHBvdXIgbGVzIGFsZXJ0ZXMgKi9cclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOGQ3ZGE7XHJcbiAgICBib3JkZXItY29sb3I6ICNmNWM2Y2I7XHJcbn0iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/
