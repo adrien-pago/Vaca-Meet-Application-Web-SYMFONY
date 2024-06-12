@@ -106,7 +106,7 @@
         ]
     },
     "symfony/security-bundle": {
-        "version": "7.1",
+        "version": "6.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",

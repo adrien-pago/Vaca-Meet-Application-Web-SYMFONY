@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Camping;
 use App\Form\LoginFormType;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,8 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface; // New version à partir de la 5.3 symfony
+
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
@@ -36,18 +37,25 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager): Response
     {
         $camping = new Camping();
         $form = $this->createForm(RegistrationFormType::class, $camping);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $camping->setPassword($passwordEncoder->hashPassword($camping, $form->get('password')->getData()));
+            // Encode le mot de passe avant de le sauvegarder
+            $camping->setPassword($passwordEncoder->encodePassword($camping, $form->get('password')->getData())); // Utilisez la méthode encodePassword
+
+            // Vous pouvez aussi initialiser d'autres valeurs par défaut ici, par exemple isActive, rgpdAccepted, etc.
+            $camping->setIsActive(true);
+            $camping->setRgpdAccepted(true);
+
             $entityManager->persist($camping);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home');
+            // Redirige l'utilisateur vers la page de login après l'inscription
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/register.html.twig', [

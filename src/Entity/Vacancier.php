@@ -2,13 +2,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\VacancierRepository")
  */
-class Camping implements UserInterface
+class Vacancier implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -20,7 +19,12 @@ class Camping implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nomCamping;
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -28,19 +32,9 @@ class Camping implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=14, unique=true)
-     */
-    private $siret;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $rgpdAccepted;
 
     /**
      * @ORM\Column(type="boolean")
@@ -52,14 +46,26 @@ class Camping implements UserInterface
         return $this->id;
     }
 
-    public function getNomCamping(): ?string
+    public function getNom(): ?string
     {
-        return $this->nomCamping;
+        return $this->nom;
     }
 
-    public function setNomCamping(string $nomCamping): self
+    public function setNom(string $nom): self
     {
-        $this->nomCamping = $nomCamping;
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -76,39 +82,14 @@ class Camping implements UserInterface
         return $this;
     }
 
-    public function getSiret(): ?string
-    {
-        return $this->siret;
-    }
-
-    public function setSiret(string $siret): self
-    {
-        $this->siret = $siret;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public function getRgpdAccepted(): ?bool
-    {
-        return $this->rgpdAccepted;
-    }
-
-    public function setRgpdAccepted(bool $rgpdAccepted): self
-    {
-        $this->rgpdAccepted = $rgpdAccepted;
 
         return $this;
     }
@@ -129,7 +110,7 @@ class Camping implements UserInterface
 
     public function getRoles(): array
     {
-        return ['ROLE_CAMPING'];
+        return ['ROLE_VACANCIER'];
     }
 
     public function getSalt()
@@ -152,6 +133,4 @@ class Camping implements UserInterface
         // Assuming you have a getUsername method that returns the username
         return $this->getUsername();
     }
-
-    
 }

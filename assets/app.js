@@ -1,1 +1,2 @@
-import './css/app.css';
+import './css/login.css';
+import './css/register.css';

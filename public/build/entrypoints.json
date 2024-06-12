@@ -15,12 +15,12 @@
         "/build/bootstrap_js.js"
       ]
     },
-    "css/app": {
+    "css/login": {
       "js": [
         "/build/runtime.js"
       ],
       "css": [
-        "/build/css/app.css"
+        "/build/css/login.css"
       ]
     },
     "bootstrap": {
