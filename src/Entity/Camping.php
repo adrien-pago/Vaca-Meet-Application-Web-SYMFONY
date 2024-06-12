@@ -5,47 +5,32 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="camping")
- */
+#[ORM\Entity]
+#[ORM\Table(name: "camping")]
+
 class Camping implements PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: "integer")]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string", length: 255)]
     private $nomCamping;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
+    #[ORM\Column(type: "string", length: 255, unique: true)]
     private $email;
 
-    /**
-     * @ORM\Column(type="string", length=14, unique=true)
-     */
+    #[ORM\Column(type: "string", length: 14, unique: true)]
     private $siret;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string", length: 255)]
     private $password;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: "boolean")]
     private $rgpdAccepted;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: "boolean")]
     private $isActive;
 
     public function getId(): ?int
@@ -61,7 +46,6 @@ class Camping implements PasswordAuthenticatedUserInterface
     public function setNomCamping(string $nomCamping): self
     {
         $this->nomCamping = $nomCamping;
-
         return $this;
     }
 
@@ -73,7 +57,6 @@ class Camping implements PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -85,21 +68,17 @@ class Camping implements PasswordAuthenticatedUserInterface
     public function setSiret(string $siret): self
     {
         $this->siret = $siret;
-
         return $this;
     }
 
-    
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -111,7 +90,6 @@ class Camping implements PasswordAuthenticatedUserInterface
     public function setRgpdAccepted(bool $rgpdAccepted): self
     {
         $this->rgpdAccepted = $rgpdAccepted;
-
         return $this;
     }
 
@@ -123,7 +101,6 @@ class Camping implements PasswordAuthenticatedUserInterface
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
-
         return $this;
     }
 

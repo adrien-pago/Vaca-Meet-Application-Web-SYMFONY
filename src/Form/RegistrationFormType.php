@@ -20,6 +20,7 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('nomCamping', TextType::class)
+            ->add('siret', TextType::class)
             ->add('rgpdAccepted', CheckboxType::class, [
                 'label' => 'J\'accepte le règlement RGPD',
                 'required' => true, // ou false selon vos besoins
