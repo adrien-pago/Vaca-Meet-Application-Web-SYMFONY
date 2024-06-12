@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="camping")
  */
 class Camping implements PasswordAuthenticatedUserInterface
 {
