@@ -24,8 +24,8 @@ security:
                 login_path: app_login
                 check_path: app_login
                 default_target_path: home # Rediriger vers la page d'accueil après la connexion
-                username_parameter: email # Utiliser "email" au lieu de "_username"
-                password_parameter: password
+                username_parameter: 'email' # Utiliser le nom complet du champ
+                password_parameter: 'password' # Utiliser le nom complet du champ
 
             # Autres configurations possibles
             # https://symfony.com/doc/current/security.html#the-firewall
