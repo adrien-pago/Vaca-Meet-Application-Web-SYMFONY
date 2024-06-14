@@ -1,0 +1,11 @@
+/* Dégradé de fond avec un bleu ciel */
+body {
+    background: linear-gradient(to right, #cce7ff, #e6f7ff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/register.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Vaca-Meet</h1>
+            <form method="post" class="form-register">
+                <div class="card">
+                    <div class="card-body">
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
+
+                        {{ form_start(registrationForm) }}
+
+                        <div class="form-group">
+                            {{ form_label(registrationForm.email, 'Adresse Email') }}
+                            {{ form_widget(registrationForm.email, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form_label(registrationForm.nomCamping, 'Nom du Camping') }}
+                            {{ form_widget(registrationForm.nomCamping, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form_label(registrationForm.siret, 'Numéro SIRET') }}
+                            {{ form_widget(registrationForm.siret, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form_label(registrationForm.plainPassword, 'Sécurité') }}
+                            {{ form_widget(registrationForm.plainPassword, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        
+                        <div class="form-group form-check">
+                            {{ form_widget(registrationForm.rgpdAccepted) }}
+                            {{ form_label(registrationForm.rgpdAccepted, 'J\'accepte les termes RGPD') }}
+                        </div>
+
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Créer</button>
+
+                        {{ form_end(registrationForm) }}
+
+                        <div class="mt-3 text-center">
+                            <a href="{{ path('app_login') }}">Se connecter</a>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

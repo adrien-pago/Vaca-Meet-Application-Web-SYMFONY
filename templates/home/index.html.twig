@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Vaca Meet{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/home.css') }}">
+{% endblock %}
 
 {% block body %}
-<h1> Hello ! </h1>
+
+    <h1>Bienvenue au {{ app.user.nomCamping}} <h1>
+    <p> {{ app.user.email }}</p>
+   
+
 {% endblock %}

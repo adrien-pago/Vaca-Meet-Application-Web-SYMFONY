@@ -1,28 +1,20 @@
 // webpack.config.js
-
 const Encore = require('@symfony/webpack-encore');
 
 Encore
-    // Configure les entrées (les fichiers JS et CSS à inclure dans votre application)
-    .addEntry('app', './assets/app.js')
-    .addStyleEntry('css/login', './assets/css/login.css')
-    .addStyleEntry('css/register', './assets/css/login.css')
-
-    // Configure les sorties (les fichiers compilés JS et CSS)
     .setOutputPath('public/build/')
     .setPublicPath('/build')
-    .enableSingleRuntimeChunk()
-
-    // Configure les loaders pour gérer les différents types de fichiers
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
-
-    // Ajoute les fichiers CSS et JS de Bootstrap à votre build
+    .addEntry('login', './assets/styles/login.css')
+    .addEntry('register', './assets/styles/register.css')
+    .addEntry('confirmation_email', './assets/styles/confirmation_email.css')
+    .addEntry('home', './assets/styles/home.css')
     .addStyleEntry('bootstrap', './node_modules/bootstrap/dist/css/bootstrap.min.css')
-    .addEntry('bootstrap_js', './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
-
+    .addEntry('bootstrap-js', './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    .enableSingleRuntimeChunk()
+    .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
+    .enablePostCssLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();

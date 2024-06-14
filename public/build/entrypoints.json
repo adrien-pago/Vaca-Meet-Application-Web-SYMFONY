@@ -1,34 +1,45 @@
 {
   "entrypoints": {
-    "app": {
+    "base": {
       "js": [
         "/build/runtime.js",
-        "/build/app.js"
+        "/build/base.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/base.css"
       ]
     },
-    "bootstrap_js": {
+    "login": {
       "js": [
         "/build/runtime.js",
-        "/build/bootstrap_js.js"
-      ]
-    },
-    "css/login": {
-      "js": [
-        "/build/runtime.js"
+        "/build/login.js"
       ],
       "css": [
-        "/build/css/login.css"
+        "/build/login.css"
       ]
     },
-    "css/register": {
+    "register": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.js",
+        "/build/register.js"
       ],
       "css": [
-        "/build/css/register.css"
+        "/build/register.css"
+      ]
+    },
+    "confirmation_email": {
+      "js": [
+        "/build/runtime.js",
+        "/build/confirmation_email.js"
+      ],
+      "css": [
+        "/build/confirmation_email.css"
+      ]
+    },
+    "bootstrap-js": {
+      "js": [
+        "/build/runtime.js",
+        "/build/bootstrap-js.js"
       ]
     },
     "bootstrap": {

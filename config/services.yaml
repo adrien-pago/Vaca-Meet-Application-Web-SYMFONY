@@ -20,8 +20,5 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # Configuration du service UserPasswordEncoderInterface
-    Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface: '@security.password_hasher'
-
-
-    
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
