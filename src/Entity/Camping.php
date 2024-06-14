@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: "camping")]
-
-class Camping implements PasswordAuthenticatedUserInterface
+class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: "integer")]
@@ -71,11 +71,6 @@ class Camping implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -104,10 +99,29 @@ class Camping implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Implémentation des méthodes de l'interface PasswordAuthenticatedUserInterface
+    // Implémentez la méthode getRoles() requise par UserInterface
+    public function getRoles(): array
+    {
+        // En tant que rôle de base, vous pouvez retourner ['ROLE_USER']
+        // Adaptez cela selon vos besoins
+        return ['ROLE_USER'];
+    }
 
+    // Implémentez la méthode eraseCredentials() requise par UserInterface
     public function eraseCredentials()
     {
-        // Si vous stockez des données sensibles temporairement, effacez-les ici
+        // Effacez ici toute donnée sensible temporaire
+    }
+
+    // Implémentez la méthode getPassword() requise par PasswordAuthenticatedUserInterface
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    // Implémentez la méthode getUserIdentifier() requise par UserInterface
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }

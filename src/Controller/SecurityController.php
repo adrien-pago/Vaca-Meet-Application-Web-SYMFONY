@@ -14,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\VarDumper\VarDumper;
+
 
 class SecurityController extends AbstractController
 {
@@ -43,7 +43,6 @@ class SecurityController extends AbstractController
            
             // Récupérer les données du formulaire
             $formData = $form->getData();
-            
             
             // Récupérer le camping correspondant à l'email saisi
             $camping = $this->entityManager->getRepository(Camping::class)->findOneBy(['email' => $formData['email']]);
