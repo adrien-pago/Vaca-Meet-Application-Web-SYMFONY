@@ -45,7 +45,8 @@
                         
                         <div class="form-group form-check">
                             {{ form_widget(registrationForm.rgpdAccepted) }}
-                            {{ form_label(registrationForm.rgpdAccepted, 'J\'accepte les termes RGPD') }}
+                            {# Le label avec le mot "RGPD" comme lien vers le PDF #}
+                            {{ form_label(registrationForm.rgpdAccepted, 'J\'accepte les <a href="' ~ asset('documents/Charte-RGPD.pdf') ~ '" target="_blank">règles RGPD</a>', { 'label_attr': { 'class': 'form-check-label' }, 'label_html': true }) }}
                         </div>
 
                         <button type="submit" class="btn btn-lg btn-primary btn-block">Créer</button>
