@@ -3,3 +3,21 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+
+# config/routes.yaml
+structure_index:
+    path: /structures
+    controller: App\Controller\StructureController::index
+    methods: GET
+
+structure_edit:
+    path: /structure/{id}/edit
+    controller: App\Controller\StructureController::edit
+    methods: POST
+
+structure_delete:
+    path: /structure/{id}
+    controller: App\Controller\StructureController::delete
+    methods: DELETE
+

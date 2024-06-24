@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
  * @ORM\Table(name="CAMPING")
  */
-class Camping
+class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id()
@@ -23,14 +25,14 @@ class Camping
     private $nomCamping;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $email;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $numSiret;
+    private $siret;
 
     /**
      * @ORM\Column(type="blob", nullable=true)
@@ -43,42 +45,32 @@ class Camping
     private $password;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=1000)
      */
-    private $tokenConfirm;
+    private $mdpVacancier;
+
+ 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="json")
      */
-    private $topUserConfirmed;
+    private array $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Structure", mappedBy="camping")
      */
     private $structures;
 
-    /**
-     * @ORM\Column(type="string", length=1000)
-     */
-    private $mdpVacancier;
+    // Ajoutez vos constructeurs, getters et setters ici
 
-    // Ajouter ici vos constructeurs, getters et setters
-
+    // Méthodes de l'interface UserInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNomCamping(): ?string
-    {
-        return $this->nomCamping;
-    }
-
-    public function setNomCamping(string $nomCamping): self
-    {
-        $this->nomCamping = $nomCamping;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -93,14 +85,64 @@ class Camping
         return $this;
     }
 
-    public function getNumSiret(): ?int
+    public function getUserIdentifier(): string
     {
-        return $this->numSiret;
+        return (string) $this->email;
     }
 
-    public function setNumSiret(int $numSiret): self
+    public function getRoles(): array
     {
-        $this->numSiret = $numSiret;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Si vous stockez des données temporaires et sensibles, nettoyez-les ici
+        // $this->plainPassword = null;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getSiret(): ?int
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(int $siret): self
+    {
+        $this->siret = $siret;
 
         return $this;
     }
@@ -117,41 +159,6 @@ class Camping
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getTokenConfirm(): ?int
-    {
-        return $this->tokenConfirm;
-    }
-
-    public function setTokenConfirm(?int $tokenConfirm): self
-    {
-        $this->tokenConfirm = $tokenConfirm;
-
-        return $this;
-    }
-
-    public function getTopUserConfirmed(): ?int
-    {
-        return $this->topUserConfirmed;
-    }
-
-    public function setTopUserConfirmed(int $topUserConfirmed): self
-    {
-        $this->topUserConfirmed = $topUserConfirmed;
-
-        return $this;
-    }
 
     public function getMdpVacancier(): ?string
     {
@@ -161,6 +168,18 @@ class Camping
     public function setMdpVacancier(string $mdpVacancier): self
     {
         $this->mdpVacancier = $mdpVacancier;
+
+        return $this;
+    }
+
+    public function getnomCamping(): ?string
+    {
+        return $this->nomCamping;
+    }
+
+    public function setnomCamping(string $nomCamping): self
+    {
+        $this->nomCamping = $nomCamping;
 
         return $this;
     }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Security;
 
-use App\Entity\User;
+use App\Entity\Camping;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,12 +26,12 @@ class EmailVerifier
         $this->entityManager = $entityManager;
     }
 
-    public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
+    public function sendEmailConfirmation(string $verifyEmailRouteName, Camping $camping, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
-            $user->getId(),
-            $user->getEmail()
+            $camping->getId(),
+            $camping->getEmail()
         );
 
         $context = $email->getContext();
@@ -47,21 +47,21 @@ class EmailVerifier
     /**
      * @throws VerifyEmailExceptionInterface
      */
-    public function handleEmailConfirmation(Request $request, User $user): void
+    public function handleEmailConfirmation(Request $request, Camping $camping): void
     {
-        $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
+        $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $camping->getId(), $camping->getEmail());
     
         // Log the verification status before updating
-        error_log('User isVerified before: ' . ($user->isVerified() ? 'true' : 'false'));
+        error_log('User isVerified before: ' . ($camping->isVerified() ? 'true' : 'false'));
     
-        if (!$user->isVerified()) {
-            $user->setIsVerified(true);
+        if (!$camping->isVerified()) {
+            $camping->setIsVerified(true);
     
-            $this->entityManager->persist($user);
+            $this->entityManager->persist($camping);
             $this->entityManager->flush();
     
             // Log the verification status after updating
-            error_log('User isVerified after: ' . ($user->isVerified() ? 'true' : 'false'));
+            error_log('User isVerified after: ' . ($camping->isVerified() ? 'true' : 'false'));
         } else {
             error_log('User was already verified');
         }

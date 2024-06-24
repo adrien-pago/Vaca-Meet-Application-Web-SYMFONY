@@ -6,17 +6,16 @@
 
     <div class="container">
         <h1>Gestion des Structures</h1>
+        
+        <button id="add-structure" class="btn btn-primary mb-3">Ajouter une structure</button>
 
-        <a href="{{ path('structure_new') }}" class="btn btn-primary mb-3">Ajouter une structure</a>
-
-        <table class="table">
+        <table id="structure-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Camping</th>
                     <th scope="col">Libellé</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">État</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -27,7 +26,6 @@
                     <td>{{ structure.camping.nom }}</td>
                     <td>{{ structure.libelleStructure }}</td>
                     <td>{{ structure.nbStructure }}</td>
-                    <td>{{ structure.etatStructure }}</td>
                     <td>
                         <a href="{{ path('structure_edit', {'id': structure.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
                         <a href="{{ path('structure_delete', {'id': structure.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette structure ?')">Supprimer</a>
@@ -38,4 +36,9 @@
         </table>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/structure.js') }}"></script>
 {% endblock %}

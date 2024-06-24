@@ -19,7 +19,7 @@ class Structure
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Camping")
-     * @ORM\JoinColumn(name="ID_CAMPING", referencedColumnName="ID_CAMPING", nullable=false)
+     * @ORM\JoinColumn(name="ID_CAMPING", referencedColumnName="id", nullable=false)
      */
     private $camping;
 

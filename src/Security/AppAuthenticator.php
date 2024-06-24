@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\User;
+use App\Entity\Camping;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,13 +33,13 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         $email = $request->request->get('email', '');
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+        $camping = $this->entityManager->getRepository(Camping::class)->findOneBy(['email' => $email]);
 
-        if (!$user) {
+        if (!$camping) {
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
-        if (!$user->isVerified()) {
+        if (!$camping->isVerified()) {
             throw new CustomUserMessageAuthenticationException('Your account is not verified.');
         }
 

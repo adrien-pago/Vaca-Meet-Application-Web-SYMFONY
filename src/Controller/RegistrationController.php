@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Camping;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,25 +28,25 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $camping = new Camping();
+        $form = $this->createForm(RegistrationFormType::class, $camping);
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
+            $camping->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user,
+                    $camping,
                     $form->get('plainPassword')->getData()
                 )
             );
     
-            $entityManager->persist($user);
+            $entityManager->persist($camping);
             $entityManager->flush();
     
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $camping,
                 (new TemplatedEmail())
                     ->from(new Address('support-technique@vaca-meet.fr', 'Support Technique'))
-                    ->to($user->getEmail())
+                    ->to($camping->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );

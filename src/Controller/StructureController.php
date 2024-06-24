@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Structure;
+use App\Form\StructureFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,15 +23,59 @@ class StructureController extends AbstractController
     /**
      * @Route("/structures", name="structure_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $structures = $this->entityManager->getRepository(Structure::class)->findAll();
 
-        return $this->render('structure/index.html.twig', [
-            'structures' => $structures,
-        ]);
+        // Si la requête est AJAX, retourner le contenu du tableau en JSON
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('structure/structure_index.html.twig', [
+                'structures' => $structures,
+            ]);
+        }
+
+        // Sinon, rendre la vue complète avec le layout
+        return $this->render('home/index.html.twig');
     }
 
+
+     /** 
+     * @Route("/structure/new", name="structure_new", methods={"POST"})
+     */
+    public function new(Request $request): Response
+    {
+        // Récupérer les données envoyées via AJAX
+        $libelle = $request->request->get('libelleStructure');
+        $nbStructure = $request->request->get('nbStructure');
+
+        // Créer une nouvelle entité Structure
+        $structure = new Structure();
+        $structure->setLibelleStructure($libelle);
+        $structure->setNbStructure($nbStructure);
+
+        // Récupérer l'utilisateur actuel et associer la structure au camping approprié
+        $user = $this->getUser(); // Récupère l'utilisateur actuellement connecté (basé sur votre entité Camping)
+        
+        // Vérifier si l'utilisateur est connecté
+        if (!$user) {
+            return new JsonResponse(['error' => 'Utilisateur non connecté.'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        // Récupérer le camping associé à l'utilisateur
+        $camping = $user; // l'entité Camping est utilisée pour la gestion des utilisateurs
+
+        // Associer la structure au camping récupéré
+        $structure->setCamping($camping);
+
+        // Persister l'entité en base de données
+        $this->entityManager->persist($structure);
+        $this->entityManager->flush();
+
+        // Retourner une réponse JSON pour indiquer le succès de l'opération
+        return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'id' => $structure->getId()]);
+    }
+
+   
     /**
      * @Route("/structure/{id}/edit", name="structure_edit", methods={"POST"})
      */
@@ -39,12 +84,10 @@ class StructureController extends AbstractController
         // Récupérer les données du formulaire
         $libelle = $request->request->get('libelleStructure');
         $nbStructure = $request->request->get('nbStructure');
-        $etat = $request->request->get('etatStructure');
 
         // Mettre à jour l'entité Structure
         $structure->setLibelleStructure($libelle);
         $structure->setNbStructure($nbStructure);
-        $structure->setEtatStructure($etat);
 
         // Persister les changements en base de données
         $this->entityManager->flush();
