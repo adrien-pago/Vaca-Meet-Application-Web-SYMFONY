@@ -1,4 +1,32 @@
-/* Dégradé de fond avec un bleu ciel */
+/* Styles pour la navbar */
+.navbar {
+    background-color: #ffffff; /* Couleur de fond de la navbar */
+    margin-bottom: 20px; /* Espace en bas de la navbar */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Texte en gras pour le nom de la navbar */
+}
+
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1); /* Couleur de la bordure du bouton de basculement */
+}
+
+.navbar-toggler-icon {
+    background-color: #333; /* Couleur de l'icône du bouton de basculement */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* Couleur du texte des liens dans la navbar */
+    margin-right: 10px; /* Espacement entre les liens */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3; /* Couleur du texte des liens au survol */
+    text-decoration: none; /* Suppression du soulignement au survol */
+}
+
+/* Fond dégradé */
 body {
     background: linear-gradient(to right, #cce7ff, #e6f7ff);
     font-family: Arial, sans-serif;
@@ -7,5 +35,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Contenu général */
+.content {
+    padding: 20px; /* Espacement du contenu */
+}
+
+/* Cartes */
+.card {
+    margin-bottom: 20px; /* Espacement entre les cartes */
 }

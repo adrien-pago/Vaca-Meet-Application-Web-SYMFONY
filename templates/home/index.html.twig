@@ -5,12 +5,73 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('build/home.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 {% endblock %}
 
 {% block body %}
 
-    <h1>Bienvenue au {{ app.user.nomCamping}} <h1>
-    <p> {{ app.user.email }}</p>
-   
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Bienvenue, {{ app.user.nomCamping }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Gestion du compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Modifier le mot de passe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Menu</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#">Gestion Structure</a></li>
+                            <li class="list-group-item"><a href="#">Gestion Activité</a></li>
+                            <li class="list-group-item"><a href="#">Gestion Planning</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Contenu dynamique</h5>
+                        <div id="dynamic-content">
+                            <!-- Le contenu dynamique sera chargé ici -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript pour Bootstrap (jQuery requis) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script pour le chargement dynamique du contenu -->
+    <script>
+        $(document).ready(function() {
+            // Exemple de chargement de contenu dynamique (à adapter selon vos besoins)
+            $('ul.list-group a').on('click', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $('#dynamic-content').load(url);
+            });
+        });
+    </script>
 
 {% endblock %}
