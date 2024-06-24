@@ -1,12 +1,12 @@
 {
-  "build/base.css": "/build/base.css",
-  "build/base.js": "/build/base.js",
   "build/login.css": "/build/login.css",
   "build/login.js": "/build/login.js",
   "build/register.css": "/build/register.css",
   "build/register.js": "/build/register.js",
   "build/confirmation_email.css": "/build/confirmation_email.css",
   "build/confirmation_email.js": "/build/confirmation_email.js",
+  "build/home.css": "/build/home.css",
+  "build/home.js": "/build/home.js",
   "build/bootstrap-js.js": "/build/bootstrap-js.js",
   "build/bootstrap.css": "/build/bootstrap.css",
   "build/runtime.js": "/build/runtime.js"

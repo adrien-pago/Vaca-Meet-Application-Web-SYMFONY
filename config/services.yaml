@@ -11,6 +11,19 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    doctrine.orm.entity_manager:
+        class: Doctrine\ORM\EntityManagerInterface
+        factory: ['@doctrine', 'getManager']
+        public: true
+        lazy: true
+
+    doctrine.orm.default_annotation_metadata_driver:
+        class: Doctrine\ORM\Mapping\Driver\AnnotationDriver
+        arguments: ['@doctrine.orm.metadata.annotation_reader', ['%kernel.project_dir%/src/Entity']]
+
+    doctrine.orm.metadata.annotation_reader:
+        class: Doctrine\Common\Annotations\AnnotationReader    
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:

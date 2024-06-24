@@ -1,0 +1,97 @@
+/* Styles pour la navbar */
+.navbar {
+    background-color: #ffffff; /* Couleur de fond de la navbar */
+    margin-bottom: 20px; /* Espace en bas de la navbar */
+    font-size: 2rem;
+}
+
+.navbar-text {
+    color: #333; /* Couleur du texte */
+}
+
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1); /* Couleur de la bordure du bouton de basculement */
+}
+
+.navbar-toggler-icon {
+    background-color: #333; /* Couleur de l'icône du bouton de basculement */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* Couleur du texte des liens dans la navbar */
+    margin-right: 10px; /* Espacement entre les liens */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3; /* Couleur du texte des liens au survol */
+    text-decoration: none; /* Suppression du soulignement au survol */
+}
+
+/* Fond dégradé */
+body {
+    background: linear-gradient(to right, #cce7ff, #e6f7ff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenu général */
+.container-fluid {
+    padding: 20px; /* Espacement du contenu */
+}
+
+/* Cartes */
+.card {
+    margin-bottom: 20px; /* Espacement entre les cartes */
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    width: fit-content;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Espacement et style pour le corps de la carte */
+.card-body {
+    padding: 2em;
+    backdrop-filter: blur(10px); /* Effet de flou derrière le formulaire */
+}
+
+.card-title{
+    font-size: 2rem;
+}
+
+.list-group-flush{
+    font-size: 1.5rem;
+}
+
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .navbar-text {
+        font-size: 14px; /* Taille de police réduite pour les écrans plus petits */
+    }
+    .navbar-brand {
+        font-size: 18px; /* Taille de police de la navbar-brand réduite */
+    }
+    .navbar-nav .nav-link {
+        font-size: 14px; /* Taille de police des liens de la navbar réduite */
+    }
+}
+
+/* Responsive Cards */
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 18px; /* Taille de police réduite pour les titres de carte */
+    }
+    .list-group-item {
+        font-size: 14px; /* Taille de police réduite pour les éléments de la liste */
+    }
+}
+

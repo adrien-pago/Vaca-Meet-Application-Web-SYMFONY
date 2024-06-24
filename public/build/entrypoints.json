@@ -1,14 +1,5 @@
 {
   "entrypoints": {
-    "base": {
-      "js": [
-        "/build/runtime.js",
-        "/build/base.js"
-      ],
-      "css": [
-        "/build/base.css"
-      ]
-    },
     "login": {
       "js": [
         "/build/runtime.js",
@@ -34,6 +25,15 @@
       ],
       "css": [
         "/build/confirmation_email.css"
+      ]
+    },
+    "home": {
+      "js": [
+        "/build/runtime.js",
+        "/build/home.js"
+      ],
+      "css": [
+        "/build/home.css"
       ]
     },
     "bootstrap-js": {
