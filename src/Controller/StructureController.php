@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Structure;
-use App\Form\StructureFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
