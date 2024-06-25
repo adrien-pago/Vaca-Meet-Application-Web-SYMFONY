@@ -21,9 +21,11 @@
             </thead>
             <tbody>
                 {% for structure in structures %}
+                <!-- Inclure le nom du camping dans une balise HTML -->
+                <div id="current-camping" style="display: none;">{{ structure.nomCamping }}</div>
                 <tr>
                     <th scope="row">{{ structure.id }}</th>
-                    <td>{{ structure.camping.nom }}</td>
+                    <td>{{ structure.nomCamping }}</td>
                     <td>{{ structure.libelleStructure }}</td>
                     <td>{{ structure.nbStructure }}</td>
                     <td>

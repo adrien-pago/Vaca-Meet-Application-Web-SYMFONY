@@ -91,4 +91,14 @@ class Structure
 
         return $this;
     }
+
+    /**
+     * Retourne le nom du camping associé.
+     *
+     * @return string|null
+     */
+    public function getNomCamping(): ?string
+    {
+        return $this->camping ? $this->camping->getNomCamping() : null;
+    }
 }
