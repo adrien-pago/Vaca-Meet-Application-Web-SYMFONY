@@ -2,17 +2,26 @@
 
 {% block title %}Gestion des Structures{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hidden-column {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 
     <div class="container">
-        <h1>Gestion des Structures</h1>
+        <h1>Gestion des Structures </h1>
         
         <button id="add-structure" class="btn btn-primary mb-3">Ajouter une structure</button>
 
         <table id="structure-table" class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" class="hidden-column">#</th>
                     <th scope="col">Camping</th>
                     <th scope="col">Libellé</th>
                     <th scope="col">Nombre</th>
@@ -24,7 +33,7 @@
                 <!-- Inclure le nom du camping dans une balise HTML -->
                 <div id="current-camping" style="display: none;">{{ structure.nomCamping }}</div>
                 <tr>
-                    <th scope="row">{{ structure.id }}</th>
+                    <td class="hidden-column">{{ structure.id }}</td>
                     <td>{{ structure.nomCamping }}</td>
                     <td>{{ structure.libelleStructure }}</td>
                     <td>{{ structure.nbStructure }}</td>

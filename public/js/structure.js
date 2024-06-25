@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('#add-structure').click(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du bouton
 
-         // Récupérer le nom du camping à partir de l'élément caché
+        // Récupérer le nom du camping à partir de l'élément caché
         var nomCamping = $('#current-camping').text();
         console.log("Nom du camping récupéré:", nomCamping);
 
@@ -31,9 +31,8 @@ $(document).ready(function() {
             return;
         }
 
-        // Création de la nouvelle ligne HTML
+        // Création de la nouvelle ligne HTML sans la colonne #
         var newRow = '<tr>' +
-                        '<td></td>' + // ID sera rempli dynamiquement côté serveur
                         '<td>' + nomCamping + '</td>' + // Affichage direct du nom du camping
                         '<td><input type="text" class="form-control" name="libelleStructure" placeholder="Libellé"></td>' +
                         '<td><input type="number" class="form-control" name="nbStructure" placeholder="Nombre"></td>' +
@@ -70,12 +69,11 @@ $(document).ready(function() {
             success: function(response) {
                 // Mettre à jour la ligne dans le tableau avec les données de la réponse
                 var $row = $this.closest('tr');
-                $row.find('td:nth-child(1)').text(response.id); // ID renvoyé par le serveur
-                $row.find('td:nth-child(3)').text(libelle); // Colonne Libellé
-                $row.find('td:nth-child(4)').text(nombre); // Colonne Nombre
+                $row.find('td:nth-child(2)').text(libelle); // Colonne Libellé
+                $row.find('td:nth-child(3)').text(nombre); // Colonne Nombre
 
                 // Modifier les boutons d'action
-                $row.find('td:nth-child(5)').html(
+                $row.find('td:nth-child(4)').html(
                     '<a href="#" class="btn btn-sm btn-warning">Modifier</a>' +
                     '<a href="#" class="btn btn-sm btn-danger">Supprimer</a>'
                 );
