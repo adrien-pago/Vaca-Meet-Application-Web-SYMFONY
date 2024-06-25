@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Structure;
+use App\Entity\Camping; 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,12 +25,22 @@ class StructureController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $structures = $this->entityManager->getRepository(Structure::class)->findAll();
+        // Récupérer l'utilisateur connecté (Camping)
+        $camping = $this->getUser();
+
+        // Vérifier si l'utilisateur est connecté
+        if (!$camping instanceof Camping) {
+            return new JsonResponse(['error' => 'Utilisateur non connecté ou n\'est pas un camping.'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        // Récupérer les structures associées à ce camping
+        $structures = $this->entityManager->getRepository(Structure::class)->findBy(['camping' => $camping]);
 
         // Si la requête est AJAX, retourner le contenu du tableau en JSON
         if ($request->isXmlHttpRequest()) {
             return $this->render('structure/structure_index.html.twig', [
                 'structures' => $structures,
+                'nomCamping' => $camping->getNomCamping(), // Utilisation de getNomCamping() pour obtenir le nom du camping
             ]);
         }
 
@@ -37,8 +48,7 @@ class StructureController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
-
-     /** 
+    /**
      * @Route("/structure/new", name="structure_new", methods={"POST"})
      */
     public function new(Request $request): Response
@@ -53,15 +63,12 @@ class StructureController extends AbstractController
         $structure->setNbStructure($nbStructure);
 
         // Récupérer l'utilisateur actuel et associer la structure au camping approprié
-        $user = $this->getUser(); // Récupère l'utilisateur actuellement connecté (basé sur votre entité Camping)
-        
-        // Vérifier si l'utilisateur est connecté
-        if (!$user) {
-            return new JsonResponse(['error' => 'Utilisateur non connecté.'], Response::HTTP_UNAUTHORIZED);
-        }
+        $camping = $this->getUser();
 
-        // Récupérer le camping associé à l'utilisateur
-        $camping = $user; // l'entité Camping est utilisée pour la gestion des utilisateurs
+        // Vérifier si le camping existe
+        if (!$camping instanceof Camping) {
+            return new JsonResponse(['error' => 'Camping non trouvé pour cet utilisateur.'], Response::HTTP_NOT_FOUND);
+        }
 
         // Associer la structure au camping récupéré
         $structure->setCamping($camping);
@@ -74,12 +81,17 @@ class StructureController extends AbstractController
         return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'id' => $structure->getId()]);
     }
 
-   
     /**
      * @Route("/structure/{id}/edit", name="structure_edit", methods={"POST"})
      */
     public function edit(Request $request, Structure $structure): Response
     {
+        // Vérifier si la requête est AJAX
+        if (!$request->isXmlHttpRequest()) {
+            // Retourner une erreur si ce n'est pas une requête AJAX
+            return new JsonResponse(['error' => 'Accès non autorisé.'], Response::HTTP_FORBIDDEN);
+        }
+
         // Récupérer les données du formulaire
         $libelle = $request->request->get('libelleStructure');
         $nbStructure = $request->request->get('nbStructure');
@@ -95,10 +107,16 @@ class StructureController extends AbstractController
     }
 
     /**
-     * @Route("/structure/{id}", name="structure_delete", methods={"DELETE"})
+     * @Route("/structure/{id}/delete", name="structure_delete", methods={"DELETE"})
      */
-    public function delete(Structure $structure): Response
+    public function delete(Request $request, Structure $structure): Response
     {
+        // Vérifier si la requête est AJAX
+        if (!$request->isXmlHttpRequest()) {
+            // Retourner une erreur si ce n'est pas une requête AJAX
+            return new JsonResponse(['error' => 'Accès non autorisé.'], Response::HTTP_FORBIDDEN);
+        }
+
         // Supprimer l'entité Structure
         $this->entityManager->remove($structure);
         $this->entityManager->flush();

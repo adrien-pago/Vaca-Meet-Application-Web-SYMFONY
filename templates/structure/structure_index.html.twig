@@ -14,9 +14,11 @@
 {% block body %}
 
     <div class="container">
-        <h1>Gestion des Structures </h1>
+        <h1>Gestion des Structures</h1>
         
         <button id="add-structure" class="btn btn-primary mb-3">Ajouter une structure</button>
+
+        <div id="current-camping" style="display: none;">{{ nomCamping }}</div> {#  récupérer le nom du camping ici à partir du controller #}
 
         <table id="structure-table" class="table">
             <thead>
@@ -30,16 +32,14 @@
             </thead>
             <tbody>
                 {% for structure in structures %}
-                <!-- Inclure le nom du camping dans une balise HTML -->
-                <div id="current-camping" style="display: none;">{{ structure.nomCamping }}</div>
                 <tr>
                     <td class="hidden-column">{{ structure.id }}</td>
-                    <td>{{ structure.nomCamping }}</td>
+                    <td>{{ nomCamping }}</td> {# Afficher le nom du camping ici #}
                     <td>{{ structure.libelleStructure }}</td>
                     <td>{{ structure.nbStructure }}</td>
-                    <td>
-                        <a href="{{ path('structure_edit', {'id': structure.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
-                        <a href="{{ path('structure_delete', {'id': structure.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette structure ?')">Supprimer</a>
+                    <td> 
+                        <a href="#" data-edit-url="{{ path('structure_edit', {'id': structure.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                        <a href="#" data-delete-url="{{ path('structure_delete', {'id': structure.id}) }}" class="btn btn-sm btn-danger delete-structure" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette structure ?')">Supprimer</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -45,10 +45,9 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=1000, nullable=true)
      */
     private $mdpVacancier;
-
  
     /**
      * @ORM\Column(type="boolean")
@@ -61,7 +60,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Structure", mappedBy="camping")
+     * @ORM\OneToMany(targetEntity="App\Entity\Structure", mappedBy="camping", cascade={"persist", "remove"})
      */
     private $structures;
 
@@ -172,19 +171,19 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getnomCamping(): ?string
+    public function getNomCamping(): ?string
     {
         return $this->nomCamping;
     }
 
-    public function setnomCamping(string $nomCamping): self
+    public function setNomCamping(string $nomCamping): self
     {
         $this->nomCamping = $nomCamping;
 
         return $this;
     }
 
-    /**
+     /**
      * @return Collection|Structure[]
      */
     public function getStructures()

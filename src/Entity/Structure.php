@@ -18,11 +18,11 @@ class Structure
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Camping")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Camping", inversedBy="structures")
      * @ORM\JoinColumn(name="ID_CAMPING", referencedColumnName="id", nullable=false)
      */
     private $camping;
-
+    
     /**
      * @ORM\Column(type="string", length=50)
      */

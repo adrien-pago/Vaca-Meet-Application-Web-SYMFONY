@@ -17,7 +17,7 @@ structure_edit:
     methods: POST
 
 structure_delete:
-    path: /structure/{id}
+    path: /structure/{id}/delete
     controller: App\Controller\StructureController::delete
     methods: DELETE
 
