@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "encore dev --watch",
+    "dev-server": "encore dev-server --hot",
+    "dev": "encore dev",
     "build": "encore production"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@symfony/webpack-encore": "^4.0.0",
+    "@symfony/webpack-encore": "^4.6.1",
     "bootstrap": "^5.0.0",
     "core-js": "^3.0.0",
     "postcss-loader": "^7.0.0",
-    "regenerator-runtime": "^0.13.0"
+    "regenerator-runtime": "^0.13.0",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.0.0"
   }
 }

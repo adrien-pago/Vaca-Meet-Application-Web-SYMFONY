@@ -8,6 +8,7 @@ Encore
     .addEntry('register', './assets/styles/register.css')
     .addEntry('confirmation_email', './assets/styles/confirmation_email.css')
     .addEntry('home', './assets/styles/home.css')
+    .addEntry('structure', './assets/styles/structure.css')
     .addStyleEntry('bootstrap', './node_modules/bootstrap/dist/css/bootstrap.min.css')
     .addEntry('bootstrap-js', './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
     .enableSingleRuntimeChunk()

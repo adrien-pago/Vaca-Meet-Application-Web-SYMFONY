@@ -57,7 +57,7 @@ class StructureController extends AbstractController
 
         // Créer une nouvelle entité Structure
         $structure = new Structure();
-        $structure->setLibelleStructure($libelle);
+        $structure->setLibelle($libelle);
         $structure->setNbStructure($nbStructure);
 
         // Récupérer l'utilisateur actuel et associer la structure au camping approprié
@@ -76,7 +76,7 @@ class StructureController extends AbstractController
         $this->entityManager->flush();
 
         // Retourner une réponse JSON pour indiquer le succès de l'opération
-        return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'id' => $structure->getId()]);
+        return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'idStructure' => $structure->getIdStructure()]);
     }
 
     ////////////////// Modifier une structure //////////////////
@@ -94,11 +94,10 @@ class StructureController extends AbstractController
         $nbStructure = $request->request->get('nbStructure');
 
         // Mettre à jour l'entité Structure
-        $structure->setLibelleStructure($libelle);
+        $structure->setLibelle($libelle);
         $structure->setNbStructure($nbStructure);
 
         // Persister les changements en base de données
-        $this->entityManager->persist($structure);
         $this->entityManager->flush();
 
         return new JsonResponse(['message' => 'Structure mise à jour avec succès!']);

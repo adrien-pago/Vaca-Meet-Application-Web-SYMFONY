@@ -30,7 +30,7 @@ class EmailVerifier
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
-            $camping->getId(),
+            $camping->getIdCamping(),
             $camping->getEmail()
         );
 
@@ -49,7 +49,7 @@ class EmailVerifier
      */
     public function handleEmailConfirmation(Request $request, Camping $camping): void
     {
-        $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $camping->getId(), $camping->getEmail());
+        $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $camping->getIdCamping(), $camping->getEmail());
     
         // Log the verification status before updating
         error_log('User isVerified before: ' . ($camping->isVerified() ? 'true' : 'false'));

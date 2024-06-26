@@ -1,0 +1,110 @@
+/* register.css */
+
+/* Centrage de la page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #cce7ff, #e6f7ff); /* Dégradé de fond */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.form-register {
+    width: 100%;
+    max-width: 400px; /* Taille maximale du formulaire */
+    padding: 15px;
+    margin: auto;
+}
+
+/* Styles pour les input */
+.form-register input[type="email"],
+.form-register input[type="text"],
+.form-register input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da; /* Légère bordure grise */
+}
+
+/* Styles pour le bouton */
+.form-register .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transitions */
+}
+
+.form-register .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Légère augmentation de taille au survol */
+}
+
+/* Style de la carte/formulaire */
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Espacement et style pour le corps de la carte */
+.card-body {
+    padding: 2em;
+    backdrop-filter: blur(10px); /* Effet de flou derrière le formulaire */
+}
+
+/* Titre du formulaire */
+.form-register h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Label des champs */
+.form-register label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Styles pour les alertes */
+.alert {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Styles pour les liens */
+.form-register a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.form-register a:hover {
+    text-decoration: underline;
+}
+
+/* Responsivité */
+@media (max-width: 576px) {
+    .form-register {
+        padding: 10px;
+    }
+
+    .form-register input[type="email"],
+    .form-register input[type="text"],
+    .form-register input[type="password"] {
+        padding: 8px;
+    }
+
+    .form-register .btn {
+        padding: 8px;
+        font-size: 1em;
+    }
+}

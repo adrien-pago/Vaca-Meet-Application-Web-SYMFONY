@@ -2,52 +2,61 @@
   "entrypoints": {
     "login": {
       "js": [
-        "/build/runtime.js",
-        "/build/login.js"
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/login.js"
       ],
       "css": [
-        "/build/login.css"
+        "http://localhost:8080/build/login.css"
       ]
     },
     "register": {
       "js": [
-        "/build/runtime.js",
-        "/build/register.js"
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/register.js"
       ],
       "css": [
-        "/build/register.css"
+        "http://localhost:8080/build/register.css"
       ]
     },
     "confirmation_email": {
       "js": [
-        "/build/runtime.js",
-        "/build/confirmation_email.js"
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/confirmation_email.js"
       ],
       "css": [
-        "/build/confirmation_email.css"
+        "http://localhost:8080/build/confirmation_email.css"
       ]
     },
     "home": {
       "js": [
-        "/build/runtime.js",
-        "/build/home.js"
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/home.js"
       ],
       "css": [
-        "/build/home.css"
+        "http://localhost:8080/build/home.css"
+      ]
+    },
+    "structure": {
+      "js": [
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/structure.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/structure.css"
       ]
     },
     "bootstrap-js": {
       "js": [
-        "/build/runtime.js",
-        "/build/bootstrap-js.js"
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/bootstrap-js.js"
       ]
     },
     "bootstrap": {
       "js": [
-        "/build/runtime.js"
+        "http://localhost:8080/build/runtime.js"
       ],
       "css": [
-        "/build/bootstrap.css"
+        "http://localhost:8080/build/bootstrap.css"
       ]
     }
   }

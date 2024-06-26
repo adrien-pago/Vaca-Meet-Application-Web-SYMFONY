@@ -11,14 +11,14 @@ class Structure
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private $idStructure;
 
     #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'structures')]
-    #[ORM\JoinColumn(name: 'ID_CAMPING', referencedColumnName: 'id', nullable: false)]
+    #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'id_camping', nullable: false)]
     private $camping;
     
     #[ORM\Column(type: 'string', length: 50)]
-    private $libelleStructure;
+    private $libelle;
 
     #[ORM\Column(type: 'integer')]
     private $nbStructure;
@@ -27,9 +27,9 @@ class Structure
     private $etatStructure;
 
     // Getters and setters
-    public function getId(): ?int
+    public function getIdStructure(): ?int
     {
-        return $this->id;
+        return $this->idStructure;
     }
 
     public function getCamping(): ?Camping
@@ -44,14 +44,14 @@ class Structure
         return $this;
     }
 
-    public function getLibelleStructure(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->libelleStructure;
+        return $this->libelle;
     }
 
-    public function setLibelleStructure(string $libelleStructure): self
+    public function setLibelle(string $libelle): self
     {
-        $this->libelleStructure = $libelleStructure;
+        $this->libelle = $libelle;
 
         return $this;
     }

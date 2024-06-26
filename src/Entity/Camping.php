@@ -15,7 +15,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private $idCamping;
 
     #[ORM\Column(type: 'string', length: 50)]
     private $nomCamping;
@@ -50,10 +50,9 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     // Ajoutez vos constructeurs, getters et setters ici
-
-    public function getId(): ?int
+    public function getIdCamping(): ?int
     {
-        return $this->id;
+        return $this->idCamping;
     }
 
     public function getEmail(): ?string
