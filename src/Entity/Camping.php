@@ -60,7 +60,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Structure", mappedBy="camping", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Structure::class, mappedBy="camping", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $structures;
 

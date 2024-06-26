@@ -5,7 +5,7 @@ controllers:
     type: attribute
 
 
-# config/routes.yaml
+# Routes spécifiques aux Structures
 structure_index:
     path: /structures
     controller: App\Controller\StructureController::index

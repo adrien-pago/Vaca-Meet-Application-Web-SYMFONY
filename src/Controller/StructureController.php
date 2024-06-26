@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Structure;
-use App\Entity\Camping; 
+use App\Entity\Camping;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,15 +20,13 @@ class StructureController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    /**
-     * @Route("/structures", name="structure_index", methods={"GET"})
-     */
+    #[Route('/structures', name: 'structure_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
         // Récupérer l'utilisateur connecté (Camping)
         $camping = $this->getUser();
 
-        // Vérifier si l'utilisateur est connecté
+        // Vérifier si l'utilisateur est connecté et est un camping
         if (!$camping instanceof Camping) {
             return new JsonResponse(['error' => 'Utilisateur non connecté ou n\'est pas un camping.'], Response::HTTP_UNAUTHORIZED);
         }
@@ -48,9 +46,7 @@ class StructureController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
-    /**
-     * @Route("/structure/new", name="structure_new", methods={"POST"})
-     */
+    #[Route('/structure/new', name: 'structure_new', methods: ['POST'])]
     public function new(Request $request): Response
     {
         // Récupérer les données envoyées via AJAX
@@ -81,9 +77,7 @@ class StructureController extends AbstractController
         return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'id' => $structure->getId()]);
     }
 
-    /**
-     * @Route("/structure/{id}/edit", name="structure_edit", methods={"POST"})
-     */
+    #[Route('/structure/{id}/edit', name: 'structure_edit', methods: ['POST'])]
     public function edit(Request $request, Structure $structure): Response
     {
         // Vérifier si la requête est AJAX
@@ -106,9 +100,7 @@ class StructureController extends AbstractController
         return new JsonResponse(['message' => 'Structure mise à jour avec succès!']);
     }
 
-    /**
-     * @Route("/structure/{id}/delete", name="structure_delete", methods={"DELETE"})
-     */
+    #[Route('/structure/{id}/delete', name: 'structure_delete', methods: ['DELETE'])]
     public function delete(Request $request, Structure $structure): Response
     {
         // Vérifier si la requête est AJAX
