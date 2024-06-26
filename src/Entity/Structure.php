@@ -4,38 +4,26 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\StructureRepository")
- * @ORM\Table(name="STRUCTURE")
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\StructureRepository')]
+#[ORM\Table(name: 'STRUCTURE')]
 class Structure
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Camping", inversedBy="structures")
-     * @ORM\JoinColumn(name="ID_CAMPING", referencedColumnName="id", nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'structures')]
+    #[ORM\JoinColumn(name: 'ID_CAMPING', referencedColumnName: 'id', nullable: false)]
     private $camping;
     
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    #[ORM\Column(type: 'string', length: 50)]
     private $libelleStructure;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $nbStructure;
 
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $etatStructure;
 
     // Getters and setters

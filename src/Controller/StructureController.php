@@ -20,6 +20,7 @@ class StructureController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    //////////////////récupérer les info structure déjà exitante //////////////////
     #[Route('/structures', name: 'structure_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
@@ -46,6 +47,7 @@ class StructureController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
+    ////////////////// Rajouter une structure //////////////////
     #[Route('/structure/new', name: 'structure_new', methods: ['POST'])]
     public function new(Request $request): Response
     {
@@ -77,6 +79,7 @@ class StructureController extends AbstractController
         return new JsonResponse(['message' => 'Structure ajoutée avec succès!', 'id' => $structure->getId()]);
     }
 
+    ////////////////// Modifier une structure //////////////////
     #[Route('/structure/{id}/edit', name: 'structure_edit', methods: ['POST'])]
     public function edit(Request $request, Structure $structure): Response
     {
@@ -95,11 +98,13 @@ class StructureController extends AbstractController
         $structure->setNbStructure($nbStructure);
 
         // Persister les changements en base de données
+        $this->entityManager->persist($structure);
         $this->entityManager->flush();
 
         return new JsonResponse(['message' => 'Structure mise à jour avec succès!']);
     }
 
+    ////////////////// Supprimer une structure //////////////////
     #[Route('/structure/{id}/delete', name: 'structure_delete', methods: ['DELETE'])]
     public function delete(Request $request, Structure $structure): Response
     {

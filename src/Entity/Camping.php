@@ -5,68 +5,52 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\CampingRepository")
- * @ORM\Table(name="CAMPING")
- */
+#[ORM\Entity(repositoryClass: 'App\Repository\CampingRepository')]
+#[ORM\Table(name: 'CAMPING')]
 class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    #[ORM\Column(type: 'string', length: 50)]
     private $nomCamping;
 
-    /**
-     * @ORM\Column(type="string", length=50, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 50, unique: true)]
     private $email;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $siret;
 
-    /**
-     * @ORM\Column(type="blob", nullable=true)
-     */
+    #[ORM\Column(type: 'blob', nullable: true)]
     private $map;
 
-    /**
-     * @ORM\Column(type="string", length=1000)
-     */
+    #[ORM\Column(type: 'string', length: 1000)]
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=1000, nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 1000, nullable: true)]
     private $mdpVacancier;
  
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    /**
-     * @ORM\OneToMany(targetEntity=Structure::class, mappedBy="camping", orphanRemoval=true, cascade={"persist", "remove"})
-     */
+    #[ORM\OneToMany(targetEntity: 'App\Entity\Structure', mappedBy: 'camping', orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $structures;
+
+    public function __construct()
+    {
+        $this->structures = new ArrayCollection();
+    }
 
     // Ajoutez vos constructeurs, getters et setters ici
 
-    // Méthodes de l'interface UserInterface
     public function getId(): ?int
     {
         return $this->id;
@@ -158,7 +142,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function getMdpVacancier(): ?string
     {
         return $this->mdpVacancier;
@@ -183,10 +166,10 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-     /**
+    /**
      * @return Collection|Structure[]
      */
-    public function getStructures()
+    public function getStructures(): Collection
     {
         return $this->structures;
     }
@@ -203,8 +186,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeStructure(Structure $structure): self
     {
-        if ($this->structures->contains($structure)) {
-            $this->structures->removeElement($structure);
+        if ($this->structures->removeElement($structure)) {
             // set the owning side to null (unless already changed)
             if ($structure->getCamping() === $this) {
                 $structure->setCamping(null);
