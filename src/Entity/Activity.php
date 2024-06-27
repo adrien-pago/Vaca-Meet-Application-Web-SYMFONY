@@ -4,32 +4,26 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\StructureRepository')]
-#[ORM\Table(name: 'STRUCTURE')]
-class Structure
+#[ORM\Entity(repositoryClass: 'App\Repository\ActivityRepository')]
+#[ORM\Table(name: 'ACTIVITY')]
+class Activity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $idStructure;
+    private $idActivity;
 
-    #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'structures')]
+    #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'activities')]
     #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'idCamping', nullable: false)]
     private $camping;
 
     #[ORM\Column(type: 'string', length: 50)]
     private $libelle;
 
-    #[ORM\Column(type: 'integer')]
-    private $nbStructure;
-
-    #[ORM\Column(type: 'string', length: 20, nullable: true)]
-    private $etatStructure;
-
-    // Getters and setters
-    public function getIdStructure(): ?int
+    // Getters et setters
+    public function getIdActivity(): ?int
     {
-        return $this->idStructure;
+        return $this->idActivity;
     }
 
     public function getCamping(): ?Camping
@@ -40,7 +34,6 @@ class Structure
     public function setCamping(?Camping $camping): self
     {
         $this->camping = $camping;
-
         return $this;
     }
 
@@ -52,31 +45,6 @@ class Structure
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
-
-        return $this;
-    }
-
-    public function getNbStructure(): ?int
-    {
-        return $this->nbStructure;
-    }
-
-    public function setNbStructure(int $nbStructure): self
-    {
-        $this->nbStructure = $nbStructure;
-
-        return $this;
-    }
-
-    public function getEtatStructure(): ?string
-    {
-        return $this->etatStructure;
-    }
-
-    public function setEtatStructure(?string $etatStructure): self
-    {
-        $this->etatStructure = $etatStructure;
-
         return $this;
     }
 

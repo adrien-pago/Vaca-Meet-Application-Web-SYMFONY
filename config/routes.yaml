@@ -21,3 +21,19 @@ structure_delete:
     controller: App\Controller\StructureController::delete
     methods: DELETE
 
+
+# Routes spécifiques aux Acitvity
+activity_index:
+    path: /activity
+    controller: App\Controller\ActivityController::index
+    methods: GET
+
+activity_edit:
+    path: /activity/{id}/edit
+    controller: App\Controller\ActivityController::edit
+    methods: POST
+
+activitye_delete:
+    path: /activity{id}/delete
+    controller: App\Controller\ActivityController::delete
+    methods: DELETE

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Activités{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/activity.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="table-header">
+        <h1>Gestion des activités</h1>
+        <button id="add-activity" class="btn btn-primary add-activity-button">Ajouter une activté</button>
+    </div>
+
+    <div id="activity-table-container">
+        <table id="activity-table" class="table">
+            <thead>
+                <tr>
+                    <th style="display: none;">ID</th> {# Colonne ID cachée dans l'en-tête #}
+                    <th>Libellé</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activity in activity %}
+                    <tr>
+                        <td class="activity-id" style="display: none;">{{ activity.idStructure }}</td> {# ID masqué #}
+                        <td>{{ activity.libelle }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-warning edit-activity">Modifier</a>
+                            <a href="#" class="btn btn-sm btn-danger delete-activity">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/activity.js') }}"></script>
+{% endblock %}

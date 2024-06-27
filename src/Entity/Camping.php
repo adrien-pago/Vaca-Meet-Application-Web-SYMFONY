@@ -34,7 +34,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 1000, nullable: true)]
     private $mdpVacancier;
- 
+
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
@@ -44,9 +44,13 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: 'App\Entity\Structure', mappedBy: 'camping', orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $structures;
 
+    #[ORM\OneToMany(targetEntity: 'App\Entity\Activity', mappedBy: 'camping', orphanRemoval: true, cascade: ['persist', 'remove'])]
+    private $activities;
+
     public function __construct()
     {
         $this->structures = new ArrayCollection();
+        $this->activities = new ArrayCollection();  // Initialisation des activités
     }
 
     // Ajoutez vos constructeurs, getters et setters ici
@@ -189,6 +193,36 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($structure->getCamping() === $this) {
                 $structure->setCamping(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+            $activity->setCamping($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        if ($this->activities->removeElement($activity)) {
+            // set the owning side to null (unless already changed)
+            if ($activity->getCamping() === $this) {
+                $activity->setCamping(null);
             }
         }
 
