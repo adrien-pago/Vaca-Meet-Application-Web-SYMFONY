@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -50,10 +49,9 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->structures = new ArrayCollection();
-        $this->activities = new ArrayCollection();  // Initialisation des activités
+        $this->activities = new ArrayCollection();
     }
 
-    // Ajoutez vos constructeurs, getters et setters ici
     public function getIdCamping(): ?int
     {
         return $this->idCamping;
@@ -67,7 +65,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -80,14 +77,12 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -99,14 +94,12 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
     public function eraseCredentials(): void
     {
-        // Si vous stockez des données temporaires et sensibles, nettoyez-les ici
-        // $this->plainPassword = null;
+        // Clean up temporary, sensitive data
     }
 
     public function isVerified(): bool
@@ -117,7 +110,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
-
         return $this;
     }
 
@@ -129,7 +121,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSiret(int $siret): self
     {
         $this->siret = $siret;
-
         return $this;
     }
 
@@ -141,7 +132,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMap($map): self
     {
         $this->map = $map;
-
         return $this;
     }
 
@@ -153,7 +143,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMdpVacancier(string $mdpVacancier): self
     {
         $this->mdpVacancier = $mdpVacancier;
-
         return $this;
     }
 
@@ -165,7 +154,6 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNomCamping(string $nomCamping): self
     {
         $this->nomCamping = $nomCamping;
-
         return $this;
     }
 
@@ -183,19 +171,16 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
             $this->structures[] = $structure;
             $structure->setCamping($this);
         }
-
         return $this;
     }
 
     public function removeStructure(Structure $structure): self
     {
         if ($this->structures->removeElement($structure)) {
-            // set the owning side to null (unless already changed)
             if ($structure->getCamping() === $this) {
                 $structure->setCamping(null);
             }
         }
-
         return $this;
     }
 
@@ -213,19 +198,16 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
             $this->activities[] = $activity;
             $activity->setCamping($this);
         }
-
         return $this;
     }
 
     public function removeActivity(Activity $activity): self
     {
         if ($this->activities->removeElement($activity)) {
-            // set the owning side to null (unless already changed)
             if ($activity->getCamping() === $this) {
                 $activity->setCamping(null);
             }
         }
-
         return $this;
     }
 }
