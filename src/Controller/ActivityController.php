@@ -37,7 +37,7 @@ class ActivityController extends AbstractController
 
         // Si la requête est AJAX, retourner le contenu du tableau en JSON
         if ($request->isXmlHttpRequest()) {
-            return $this->render('activity/activity.html.twig', [
+            return $this->render('activity/activity_index.html.twig', [
                 'activity' => $activity,
                 'nomCamping' => $camping->getNomCamping(), // Utilisation de getNomCamping() pour obtenir le nom du camping
             ]);
@@ -52,7 +52,7 @@ class ActivityController extends AbstractController
     public function new(Request $request): Response
     {
         // Récupérer les données envoyées via AJAX
-        $libelle = $request->request->get('libelleActivitye');
+        $libelle = $request->request->get('libelleActivity');
      
 
         // Créer une nouvelle entité Activité
@@ -90,7 +90,7 @@ class ActivityController extends AbstractController
         }
 
         // Récupérer les données du formulaire
-        $libelle = $request->request->get('libelleStructure');
+        $libelle = $request->request->get('libelleActivity');
   
         // Mettre à jour l'entité activité
         $activity->setLibelle($libelle);
