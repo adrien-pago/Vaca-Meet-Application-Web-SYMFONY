@@ -14,7 +14,7 @@ class Activity
     private $idActivity;
 
     #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'activities')]
-    #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'idCamping', nullable: false)]
+    #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'id_camping', nullable: false)]
     private $camping;
 
     #[ORM\Column(type: 'string', length: 50)]
