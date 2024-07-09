@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du Compte{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/gestionCompte.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
+    <span class="navbar-text mx-4">Bienvenue au {{ app.user.nomCamping }}</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Gestion du Compte</h5>
+            <form id="updateCampingForm" method="post" action="{{ path('gestion_compte_update', {'id': camping.idCamping}) }}">
+                <div class="form-group row">
+                    <label for="nomCamping" class="col-sm-3 col-form-label">Nom du Camping</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="nomCamping" name="nomCamping" value="{{ camping.nomCamping }}" readonly>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-sm btn-primary btn-block" id="editNomCamping">Modifier</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="siret" class="col-sm-3 col-form-label">Numéro de Siret</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="siret" name="siret" value="{{ camping.siret }}" readonly>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-sm btn-primary btn-block" id="editSiret">Modifier</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label">Adresse Email</label>
+                    <div class="col-sm-7">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ camping.email }}" readonly>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-sm btn-primary btn-block" id="editEmail">Modifier</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-center"> <!-- Utilisation d'une colonne sur 12 pour centrer -->
+                        <button type="submit" class="btn btn-primary d-none mx-auto" id="saveChangesBtn">Valider</button>
+                        <button type="button" class="btn btn-secondary d-none mx-auto" id="cancelEditBtn">Annuler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title text-center">Modification du Mot de Passe</h5>
+            <form id="updatePasswordForm" method="post" action="{{ path('gestion_compte_update_password', {'id': camping.idCamping}) }}">
+                <div class="form-group row">
+                    <label for="newPassword" class="col-sm-4 col-form-label">Nouveau Mot de Passe</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confirmPassword" class="col-sm-4 col-form-label">Confirmer le Mot de Passe</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/gestionCompte.js') }}"></script>
+{% endblock %}

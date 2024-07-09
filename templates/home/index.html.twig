@@ -19,14 +19,23 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Gestion du compte</a>
+                    <a class="nav-link" href="{{ path('gestion_compte') }}">Gestion du compte</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Déconnexion</a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <!-- pour afficher les message flash dans la page Home -->
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
 
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -35,10 +44,10 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Menu</h5>
                         <ul class="list-group list-group-flush d-flex flex-row justify-content-between flex-wrap">
-                            <li class="list-group-item"><a href="#" id="load-structures" data-url="{{ path('structure_index') }}">Gestion Structure</a></li>
-                            <li class="list-group-item"><a href="#"id="load-activity" data-url="{{ path('activity_index') }}">Gestion Activités</a></li>
-                            <li class="list-group-item"><a href="#"id"load-planning" data-url="{{path('planning_index')}}">Gestion Planning</a></li>
-                            <li class="list-group-item"><a href="#"id="load-password-vaca" data-url="{{path('password_vaca_index')}}">Gestion Password</a></li>
+                            <li class="list-group-item"><a href="#" id="load-structures" data-url="{{ path('structure_index') }}">Structure</a></li>
+                            <li class="list-group-item"><a href="#"id="load-activity" data-url="{{ path('activity_index') }}">Activités</a></li>
+                            <li class="list-group-item"><a href="#"id"load-planning" data-url="{{path('planning_index')}}">Planning</a></li>
+                            <li class="list-group-item"><a href="#"id="load-password-vaca" data-url="{{path('password_vaca_index')}}">Password</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,5 +75,17 @@
     <script src="{{ asset('js/activity.js') }}"></script>
     <script src="{{ asset('js/planning.js') }}"></script>
     <script src="{{ asset('js/passwordVaca.js') }}"></script>
+    <script src="{{ asset('js/gestionCompte.js') }}"></script>
+
+    <!-- Script pour faire disparaître les messages flash après 5 secondes -->
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.alert').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+            }, 5000); // 5000 millisecondes = 5 secondes
+        });
+    </script>
 
 {% endblock %}

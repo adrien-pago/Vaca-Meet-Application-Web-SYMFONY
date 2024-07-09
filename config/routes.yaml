@@ -4,6 +4,10 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+# route chemin défault home
+home:
+    path: /home
+    controller: App\Controller\HomeController::index    
 
 # Routes spécifiques aux Structures
 structure_index:
@@ -21,8 +25,7 @@ structure_delete:
     controller: App\Controller\StructureController::delete
     methods: DELETE
 
-
-# Routes spécifiques aux Acitvity
+# Routes spécifiques aux Activities
 activity_index:
     path: /activity
     controller: App\Controller\ActivityController::index
@@ -33,7 +36,45 @@ activity_edit:
     controller: App\Controller\ActivityController::edit
     methods: POST
 
-activitye_delete:
-    path: /activity{id}/delete
+activity_delete:
+    path: /activity/{id}/delete
     controller: App\Controller\ActivityController::delete
     methods: DELETE
+
+# Routes spécifiques aux planning
+planning_index:
+    path: /planning
+    controller: App\Controller\ActivityPlanning::index
+    methods: GET
+
+planning_edit:
+    path: /planning/{id}/edit
+    controller: App\Controller\ActivityPlanning::edit
+    methods: POST
+
+planning_delete:
+    path: /planning/{id}/delete
+    controller: App\Controller\ActivityPlanning::delete
+    methods: DELETE
+
+# Routes spécifiques aux modification Password
+password_vaca_index:
+    path: /password_vaca
+    controller: App\Controller\PasswordVacaController::index
+    methods: [GET, POST]
+
+# Gestion Compte
+gestion_compte:
+    path: /gestion-compte
+    controller: App\Controller\GestionCompteController::index
+    methods: GET
+
+gestion_compte_update:
+    path: /gestion-compte/update/{id}
+    controller: App\Controller\GestionCompteController::update
+    methods: POST   
+
+gestion_compte_update_password:
+    path: /gestion-compte/update-password/{id}
+    controller: App\Controller\GestionCompteController::updatePassword
+    methods: POST   
