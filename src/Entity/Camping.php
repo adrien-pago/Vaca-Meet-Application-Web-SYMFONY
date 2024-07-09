@@ -46,10 +46,14 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: 'App\Entity\Activity', mappedBy: 'camping', orphanRemoval: true, cascade: ['persist', 'remove'])]
     private $activities;
 
+    #[ORM\OneToMany(targetEntity: 'App\Entity\Planning', mappedBy: 'camping', orphanRemoval: true, cascade: ['persist', 'remove'])]
+    private $planning;
+
     public function __construct()
     {
         $this->structures = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->planning = new ArrayCollection();
     }
 
     public function getIdCamping(): ?int
@@ -206,6 +210,33 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->activities->removeElement($activity)) {
             if ($activity->getCamping() === $this) {
                 $activity->setCamping(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection|Planning[]
+     */
+    public function getPlanning(): Collection
+    {
+        return $this->planning;
+    }
+
+    public function addPlanning(Planning $planning): self
+    {
+        if (!$this->planning->contains($planning)) {
+            $this->planning[] = $planning;
+            $planning->setCamping($this);
+        }
+        return $this;
+    }
+
+    public function removePlanning(Planning $planning): self
+    {
+        if ($this->planning->removeElement($planning)) {
+            if ($planning->getCamping() === $this) {
+                $planning->setCamping(null);
             }
         }
         return $this;

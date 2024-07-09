@@ -44,17 +44,17 @@ activity_delete:
 # Routes spécifiques aux planning
 planning_index:
     path: /planning
-    controller: App\Controller\ActivityPlanning::index
+    controller: App\Controller\PlanningController::index
     methods: GET
 
 planning_edit:
     path: /planning/{id}/edit
-    controller: App\Controller\ActivityPlanning::edit
+    controller: App\Controller\PlanningController::edit
     methods: POST
 
 planning_delete:
     path: /planning/{id}/delete
-    controller: App\Controller\ActivityPlanning::delete
+    controller: App\Controller\PlanningController::delete
     methods: DELETE
 
 # Routes spécifiques aux modification Password

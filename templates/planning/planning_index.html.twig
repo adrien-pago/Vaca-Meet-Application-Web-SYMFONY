@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plannings d'Activités{% endblock %}
+
+{% block body %}
+    <h1>Plannings d'Activités</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Activité</th>
+                <th scope="col">Date de Début</th>
+                <th scope="col">Date de Fin</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for planning in plannings %}
+                <tr>
+                    <th scope="row">{{ planning.idPlanning }}</th>
+                    <td>{{ planning.libelleActivity }}</td>
+                    <td>{{ planning.dateDebut|date('d/m/Y H:i') }}</td>
+                    <td>{{ planning.dateFin|date('d/m/Y H:i') }}</td>
+                    <td>
+                        <a href="{{ path('planning_edit', { 'id': planning.idPlanning }) }}" class="btn btn-sm btn-primary">Modifier</a>
+                        <form action="{{ path('planning_delete', { 'id': planning.idPlanning }) }}" method="post" style="display: inline-block;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ planning.idPlanning) }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce planning ?')">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        <a href="{{ path('planning_add_activity') }}" class="btn btn-success">Ajouter une Activité</a>
+    </div>
+{% endblock %}
