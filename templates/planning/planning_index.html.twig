@@ -1,41 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Plannings d'Activités{% endblock %}
+{% block title %}Planning{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/planning.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Plannings d'Activités</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Activité</th>
-                <th scope="col">Date de Début</th>
-                <th scope="col">Date de Fin</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for planning in plannings %}
-                <tr>
-                    <th scope="row">{{ planning.idPlanning }}</th>
-                    <td>{{ planning.libelleActivity }}</td>
-                    <td>{{ planning.dateDebut|date('d/m/Y H:i') }}</td>
-                    <td>{{ planning.dateFin|date('d/m/Y H:i') }}</td>
-                    <td>
-                        <a href="{{ path('planning_edit', { 'id': planning.idPlanning }) }}" class="btn btn-sm btn-primary">Modifier</a>
-                        <form action="{{ path('planning_delete', { 'id': planning.idPlanning }) }}" method="post" style="display: inline-block;">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ planning.idPlanning) }}">
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce planning ?')">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div>
-        <a href="{{ path('planning_add_activity') }}" class="btn btn-success">Ajouter une Activité</a>
+<div class="container">
+    <h1 class="my-4">Planning Hebdomadaire</h1>
+    <div id="planning-table" class="table-responsive">
+        <!-- Le planning sera chargé ici -->
     </div>
+</div>
+
+<!-- Inclure le script externe -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="{{ asset('js/planning.js') }}"></script>
 {% endblock %}

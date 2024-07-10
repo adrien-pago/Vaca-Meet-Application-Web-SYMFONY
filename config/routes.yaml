@@ -4,7 +4,6 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-# route chemin défault home
 home:
     path: /home
     controller: App\Controller\HomeController::index    
@@ -45,6 +44,11 @@ activity_delete:
 planning_index:
     path: /planning
     controller: App\Controller\PlanningController::index
+    methods: GET
+
+planning_data:
+    path: /api/planning
+    controller: App\Controller\PlanningController::getPlanningData
     methods: GET
 
 planning_edit:
