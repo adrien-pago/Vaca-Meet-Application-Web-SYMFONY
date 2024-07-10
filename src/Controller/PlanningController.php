@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanningController extends AbstractController
 {
     #[Route('/planning', name: 'planning_index', methods: ['GET'])]
-    public function index(PlanningRepository $planningRepository): Response
+    public function index(): Response
     {
         return $this->render('planning/planning_index.html.twig');
     }
