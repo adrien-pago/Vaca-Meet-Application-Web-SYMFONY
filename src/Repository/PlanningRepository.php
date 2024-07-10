@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Planning;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,5 +20,16 @@ class PlanningRepository extends ServiceEntityRepository
         parent::__construct($registry, Planning::class);
     }
 
+    public function findByDateRange(DateTime $startDate, DateTime $endDate): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.dateDebut BETWEEN :start AND :end')
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate)
+            ->getQuery()
+            ->getResult();
+    }
+
     // Ajoutez vos méthodes de requête personnalisées ici
 }
+

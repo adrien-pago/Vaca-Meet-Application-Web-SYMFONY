@@ -6,6 +6,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups; // Importez Groups depuis le Serializer
 
 #[ORM\Entity(repositoryClass: 'App\Repository\CampingRepository')]
 #[ORM\Table(name: 'CAMPING')]
@@ -218,6 +219,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|Planning[]
      */
+    #[Groups(['camping'])] // Définir le groupe de sérialisation pour cette propriété
     public function getPlanning(): Collection
     {
         return $this->planning;

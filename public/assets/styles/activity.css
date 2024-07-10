@@ -5,7 +5,7 @@
 #activity-table-container {
     height: 40vh;
     overflow-y: auto;
-    margin-top: 20px; /* Marge supplémentaire au-dessus du tableau */
+    margin: 20px; /* Marge supplémentaire au-dessus du tableau */
 }
 
 #activity-table {
@@ -23,4 +23,29 @@
 
 .add-activity-button {
     margin-bottom: 10px;
+}
+
+/* Style global pour le tableau */
+.table-modern {
+    border: 1px solid #dee2e6; /* Bordure extérieure */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-modern th,
+.table-modern td {
+    border: none; /* Supprimer les bordures des cellules */
+    padding: 12px; /* Espacement interne des cellules */
+}
+
+.table-modern thead {
+    background-color: #f2f2f2; /* Couleur de fond de l'en-tête */
+}
+
+.table-modern tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Couleur de fond des lignes paires */
+}
+
+.table-modern tbody tr:hover {
+    background-color: #f0f0f0; /* Couleur de fond au survol des lignes */
 }

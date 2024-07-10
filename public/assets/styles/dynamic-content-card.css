@@ -1,0 +1,49 @@
+/*Style global de la carte dynamique */
+.card-content {
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    width: 100%; /* Remplir toute la largeur disponible */
+}
+
+.card-content:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-content .card-header {
+    background-color: #f2f2f2; /* Couleur de fond pour l'en-tête */
+    border-top-left-radius: 15px; /* Coins arrondis */
+    border-top-right-radius: 15px; /* Coins arrondis */
+    padding: 20px; /* Espacement interne */
+}
+
+.card-content .card-body {
+    padding: 20px; /* Espacement interne */
+}
+
+/* Style global pour le tableau */
+.table-modern {
+    border: 1px solid #dee2e6; /* Bordure extérieure */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-modern th,
+.table-modern td {
+    border: none; /* Supprimer les bordures des cellules */
+    padding: 12px; /* Espacement interne des cellules */
+}
+
+.table-modern thead {
+    background-color: #f2f2f2; /* Couleur de fond de l'en-tête */
+}
+
+.table-modern tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Couleur de fond des lignes paires */
+}
+
+.table-modern tbody tr:hover {
+    background-color: #f0f0f0; /* Couleur de fond au survol des lignes */
+}

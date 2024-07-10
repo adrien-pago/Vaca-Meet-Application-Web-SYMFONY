@@ -4,17 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-#Calendar
-calendar:
-    resource: '@CalendarBundle/Resources/config/routing.yaml'
-
-
-# route retour sur Home
+# Route de retour à la page d'accueil
 home:
     path: /home
     controller: App\Controller\HomeController::index    
 
-# Routes spécifiques aux Structures
+# Routes spécifiques aux structures
 structure_index:
     path: /structures
     controller: App\Controller\StructureController::index
@@ -30,7 +25,7 @@ structure_delete:
     controller: App\Controller\StructureController::delete
     methods: DELETE
 
-# Routes spécifiques aux Activities
+# Routes spécifiques aux activités
 activity_index:
     path: /activity
     controller: App\Controller\ActivityController::index
@@ -46,7 +41,7 @@ activity_delete:
     controller: App\Controller\ActivityController::delete
     methods: DELETE
 
-# Routes spécifiques aux planning
+# Routes spécifiques au planning
 planning_index:
     path: /planning
     controller: App\Controller\PlanningController::index
@@ -56,6 +51,11 @@ planning_data:
     path: /api/planning
     controller: App\Controller\PlanningController::getPlanningData
     methods: GET
+
+planning_add:
+    path: /api/planning
+    controller: App\Controller\PlanningController::addPlanning
+    methods: POST
 
 planning_edit:
     path: /planning/{id}/edit
@@ -67,13 +67,13 @@ planning_delete:
     controller: App\Controller\PlanningController::delete
     methods: DELETE
 
-# Routes spécifiques aux modification Password
+# Routes spécifiques à la modification de mot de passe
 password_vaca_index:
     path: /password_vaca
     controller: App\Controller\PasswordVacaController::index
     methods: [GET, POST]
 
-# Gestion Compte
+# Gestion de compte
 gestion_compte:
     path: /gestion-compte
     controller: App\Controller\GestionCompteController::index

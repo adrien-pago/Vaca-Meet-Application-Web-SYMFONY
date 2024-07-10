@@ -60,11 +60,16 @@ body {
 .card-body {
     padding: 2em;
     backdrop-filter: blur(10px); /* Effet de flou derrière le formulaire */
+    background-color:transparent; /* Fond légèrement transparent */
 }
 
 .card-title{
     font-size: 3rem;
 }
+
+.card
+
+
 
 .list-group-flush{
     font-size: 2rem;
