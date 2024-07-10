@@ -4,6 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+#Calendar
+calendar:
+    resource: '@CalendarBundle/Resources/config/routing.yaml'
+
+
+# route retour sur Home
 home:
     path: /home
     controller: App\Controller\HomeController::index    
