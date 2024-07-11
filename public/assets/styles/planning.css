@@ -30,12 +30,15 @@
     background-color: #fff; /* Fond blanc */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
     transition: box-shadow 0.3s ease;
+    table-layout: fixed; /* Fixe la largeur des colonnes */
+    width: 100%; /* Assure que le tableau prend toute la largeur disponible */
 }
 
 .table-modern th,
 .table-modern td {
     padding: 10px; /* Espacement interne */
     vertical-align: middle; /* Alignement vertical au centre */
+    text-align: center; /* Centrer le texte */
 }
 
 .table-modern th {

@@ -17,29 +17,30 @@
                     <h1>Gestion des activités</h1>
                     <button id="add-activity" class="btn btn-primary add-activity-button">Ajouter une activté</button>
                 </div>
-                
-                <div id="activity-table-container">
-                    <table id="activity-table" class="table table-modern">
-                        <thead>
-                            <tr>
-                                <th style="display: none;">ID</th> {# Colonne ID cachée dans l'en-tête #}
-                                <th>Libellé</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for activity in activity %}
+                <div class="card-body">
+                    <div id="activity-table-container">
+                        <table id="activity-table" class="table table-modern">
+                            <thead>
                                 <tr>
-                                    <td class="activity-id" style="display: none;">{{ activity.idActivity }}</td> {# ID masqué #}
-                                    <td>{{ activity.libelle }}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-warning edit-activity">Modifier</a>
-                                        <a href="#" class="btn btn-sm btn-danger delete-activity">Supprimer</a>
-                                    </td>
+                                    <th style="display: none;">ID</th> {# Colonne ID cachée dans l'en-tête #}
+                                    <th>Libellé</th>
+                                    <th>Actions</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {% for activity in activity %}
+                                    <tr>
+                                        <td class="activity-id" style="display: none;">{{ activity.idActivity }}</td> {# ID masqué #}
+                                        <td>{{ activity.libelle }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-warning edit-activity">Modifier</a>
+                                            <a href="#" class="btn btn-sm btn-danger delete-activity">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
