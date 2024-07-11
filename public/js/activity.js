@@ -18,7 +18,6 @@ $(document).ready(function() {
         });
     });
 
-
     ///////////////// Ajout d'une nouvelle activité /////////////////
     $('#add-activity').click(function(event) {
         event.preventDefault(); // Empêche le comportement par défaut du bouton
