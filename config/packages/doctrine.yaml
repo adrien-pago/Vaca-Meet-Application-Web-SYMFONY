@@ -1,7 +1,7 @@
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        server_version: '5.7' # ou la version spécifique de MySQL/MariaDB que vous utilisez
+        server_version: '5.7'  # ou la version spécifique de MySQL/MariaDB que vous utilisez
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
     orm:
@@ -9,7 +9,7 @@ doctrine:
         enable_lazy_ghost_objects: true
         report_fields_where_declared: true
         validate_xml_mapping: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
             App:
