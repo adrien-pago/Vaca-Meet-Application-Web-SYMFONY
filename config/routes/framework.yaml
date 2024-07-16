@@ -1,8 +1,13 @@
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix: /_error
+        
 framework:
-    router:
-        strict_requirements: true
-    csrf_protection:
-        enabled: true
+    session:
+        handler_id: null
+        cookie_secure: auto
+        cookie_samesite: lax
 
     # Autres configurations...
 
