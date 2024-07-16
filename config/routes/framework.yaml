@@ -2,12 +2,6 @@ when@dev:
     _errors:
         resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
         prefix: /_error
-        
-framework:
-    session:
-        handler_id: null
-        cookie_secure: auto
-        cookie_samesite: lax
 
     # Autres configurations...
 
