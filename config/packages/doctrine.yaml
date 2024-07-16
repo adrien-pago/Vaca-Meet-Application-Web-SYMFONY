@@ -1,7 +1,7 @@
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        server_version: '5.7'  # ou la version spécifique de MySQL/MariaDB que vous utilisez
+        server_version: '10.5.23'  # ou la version spécifique de MySQL/MariaDB que vous utilisez
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
     orm:
