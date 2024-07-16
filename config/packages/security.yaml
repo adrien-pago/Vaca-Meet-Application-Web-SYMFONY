@@ -46,9 +46,9 @@ security:
     #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUS  }
     #- { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUS }
     #- { path: ^/profile, roles: ROLE_USER }
-   # - { path: ^/admin, roles: ROLE_ADMIN }
-   # - { path: ^/gestion-compte, roles: ROLE_USER }
-   # - { path: ^/structures, roles: ROLE_USER }
+    #- { path: ^/admin, roles: ROLE_ADMIN }
+    #- { path: ^/gestion-compte, roles: ROLE_USER }
+    #- { path: ^/structures, roles: ROLE_USER }
 
       
 when@test:
