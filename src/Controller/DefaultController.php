@@ -15,4 +15,13 @@ class DefaultController extends AbstractController
     {
         return $this->render('security/login.html.twig');
     }
+
+    /**
+     * @Route("/register", name="app_register", methods={"GET", "POST"})
+     */
+    public function register(): Response
+    {
+        // Pas besoin de rediriger, simplement rendre le formulaire d'inscription
+        return $this->render('registration/register.html.twig');
+    }
 }
