@@ -10,9 +10,9 @@ doctrine:
         report_fields_where_declared: true
         validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        naming_strategy_options:
-            case: lower
-            number_aware: true
+        #naming_strategy_options:
+            #case: lower
+            #number_aware: true
         auto_mapping: true
         mappings:
             App:
