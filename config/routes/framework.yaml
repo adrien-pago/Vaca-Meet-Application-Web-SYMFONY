@@ -2,10 +2,6 @@ when@dev:
     _errors:
         resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
         prefix: /_error
-        
-framework:
-    session:
-        handler_id: null
     # Autres configurations...
 
 
