@@ -13,7 +13,7 @@ class Planning
     #[ORM\Column(type: 'integer')]
     private $idPlanning;
 
-    #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping')]
+    #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'planning')]
     #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'id_camping', nullable: false)]
     private $camping;
 
