@@ -3,9 +3,6 @@ doctrine:
         driver: 'pdo_mysql'
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
-    migrations:
-        # Indique le répertoire des migrations
-        dir_name: '%kernel.project_dir%/migrations'
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
