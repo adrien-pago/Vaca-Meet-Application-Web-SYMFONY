@@ -4,14 +4,9 @@ when@dev:
         prefix: /_error
         
 framework:
-    session:
-        handler_id: null
-        cookie_secure: auto
-        cookie_samesite: lax
     router:
         strict_requirements: true
-    templating:
-        engines: ['twig']
+
     csrf_protection:
         enabled: true
 
