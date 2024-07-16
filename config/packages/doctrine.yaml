@@ -1,6 +1,6 @@
 doctrine:
     dbal:
-        driver: 'mysqli'
+        driver: 'pdo_mysql'
         url: '%env(resolve:DATABASE_URL)%'
         profiling_collect_backtrace: '%kernel.debug%'
     migrations:
