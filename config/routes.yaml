@@ -15,6 +15,12 @@ home:
     path: /home
     controller: App\Controller\HomeController::index    
 
+# Route de création de compte
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+    methods: [GET, POST]
+
 # Routes spécifiques aux structures
 structure_index:
     path: /structures
