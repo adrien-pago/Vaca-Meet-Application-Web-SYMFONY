@@ -50,6 +50,7 @@ security:
     #- { path: ^/admin, roles: ROLE_ADMIN }
     #- { path: ^/gestion-compte, roles: ROLE_USER }
     #- { path: ^/structures, roles: ROLE_USER }
+    #enlever login / register juste garder /home etc... pour éviter boucle infini
 
       
 when@test:
