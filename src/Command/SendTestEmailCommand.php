@@ -7,7 +7,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+// Ajoutez cette ligne au début de votre commande
+#[AsCommand(name: 'app:send-test-email')]
 class SendTestEmailCommand extends Command
 {
     protected static $defaultName = 'app:send-test-email';
