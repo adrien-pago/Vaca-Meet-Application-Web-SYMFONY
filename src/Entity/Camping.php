@@ -15,10 +15,10 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $idCamping;
+    private $id_camping;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private $nomCamping;
+    private $nom_camping;
 
     #[ORM\Column(type: 'string', length: 50, unique: true)]
     private $email;
@@ -33,10 +33,10 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 1000, nullable: true)]
-    private $mdpVacancier;
+    private $mdp_vacancier;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private $is_verified = false;
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
@@ -59,7 +59,7 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getIdCamping(): ?int
     {
-        return $this->idCamping;
+        return $this->id_camping;
     }
 
     public function getEmail(): ?string
@@ -109,12 +109,12 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function isVerified(): bool
     {
-        return $this->isVerified;
+        return $this->is_verified;
     }
 
     public function setIsVerified(bool $isVerified): self
     {
-        $this->isVerified = $isVerified;
+        $this->is_verified = $isVerified;
         return $this;
     }
 
@@ -142,23 +142,23 @@ class Camping implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getMdpVacancier(): ?string
     {
-        return $this->mdpVacancier;
+        return $this->mdp_vacancier;
     }
 
     public function setMdpVacancier(string $mdpVacancier): self
     {
-        $this->mdpVacancier = $mdpVacancier;
+        $this->mdp_vacancier = $mdpVacancier;
         return $this;
     }
 
     public function getNomCamping(): ?string
     {
-        return $this->nomCamping;
+        return $this->nom_camping;
     }
 
     public function setNomCamping(string $nomCamping): self
     {
-        $this->nomCamping = $nomCamping;
+        $this->nom_camping = $nomCamping;
         return $this;
     }
 

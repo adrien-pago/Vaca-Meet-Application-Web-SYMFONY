@@ -11,20 +11,20 @@ class Planning
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $idPlanning;
+    private $id_planning;
 
     #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'planning')]
     #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'id_camping', nullable: false)]
     private $camping;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $libelleActivity;
+    private $libelle_activity;
 
     #[ORM\Column(type: 'datetime')]
-    private $dateDebut;
+    private $date_debut;
 
     #[ORM\Column(type: 'datetime')]
-    private $dateFin;
+    private $date_fin;
 
     // Getters et Setters
     public function getCamping(): ?Camping
@@ -40,39 +40,39 @@ class Planning
 
     public function getIdPlanning(): ?int
     {
-        return $this->idPlanning;
+        return $this->id_planning;
     }
 
     public function getLibelleActivity(): ?string
     {
-        return $this->libelleActivity;
+        return $this->libelle_activity;
     }
 
     public function setLibelleActivity(string $libelleActivity): self
     {
-        $this->libelleActivity = $libelleActivity;
+        $this->libelle_activity = $libelleActivity;
         return $this;
     }
 
     public function getDateDebut(): ?\DateTimeInterface
     {
-        return $this->dateDebut;
+        return $this->date_debut;
     }
 
     public function setDateDebut(\DateTimeInterface $dateDebut): self
     {
-        $this->dateDebut = $dateDebut;
+        $this->date_debut = $dateDebut;
         return $this;
     }
 
     public function getDateFin(): ?\DateTimeInterface
     {
-        return $this->dateFin;
+        return $this->date_fin;
     }
 
     public function setDateFin(\DateTimeInterface $dateFin): self
     {
-        $this->dateFin = $dateFin;
+        $this->date_fin = $dateFin;
         return $this;
     }
 

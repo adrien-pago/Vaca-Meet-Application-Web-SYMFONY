@@ -11,7 +11,7 @@ class Activity
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $idActivity;
+    private $id_activity;
 
     #[ORM\ManyToOne(targetEntity: 'App\Entity\Camping', inversedBy: 'activities')]
     #[ORM\JoinColumn(name: 'idCamping', referencedColumnName: 'id_camping', nullable: false)]
@@ -23,7 +23,7 @@ class Activity
     // Getters et setters
     public function getIdActivity(): ?int
     {
-        return $this->idActivity;
+        return $this->id_activity;
     }
 
     public function getCamping(): ?Camping
